@@ -15,7 +15,7 @@
                 @if(MITBooster::getSetting('logo_light_text') != null)
                 <span class="navbar-brand-text">
                     <!-- Light Logo text -->
-                    <img src="{{ asset(MITBooster::getSetting('logo_light_text')) }}" class="light-logo" alt="homepage" />
+                    <img src="{{ asset(MITBooster::getSetting('logo_light_text')) }}" class="light-logo" alt="homepage" style="width: auto;height: 50px;" />
                 </span>
                 @endif
             </a>

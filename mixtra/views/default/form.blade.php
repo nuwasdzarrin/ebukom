@@ -23,7 +23,7 @@
             <div class="card-body" style="padding:0px 0px 0px 0px">
                 <?php
                 $action = (@$row) ? MITBooster::mainpath("edit-save/$row->id") : MITBooster::mainpath("add-save");
-                
+
                 $return_url = ($return_url) ?: g('return_url');
                 if ($save_type == 'self' && $command == 'edit') {
                     $return_url = Request::fullUrl();
@@ -71,7 +71,7 @@
                                 $next_url = MITBooster::mainpath('edit/'.$next_id).'?return_url='.g("return_url");
                                 // <!-- <a href='{{$next_url}}' class='btn btn-default sm-button'>Next <i class='fa fa-chevron-circle-right'></i></a> -->
                                 ?>
-                                    
+
                                 @endif
                             </div>
                         </div>

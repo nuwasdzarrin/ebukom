@@ -11,10 +11,10 @@
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('assets/vendor/popper/popper.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-   
+
     <!-- Admin JavaScript -->
     @yield('admin_js')
-    
+
     {{-- Load Custom JS File --}}
     @push('bottom')
         @if($load_js)
@@ -22,8 +22,8 @@
     	        <script src="{{$js}}"></script>
     	    @endforeach
     	@endif
-    @endpush;
-    
+    @endpush
+
     <script type="text/javascript">
         @if($script_js)
             {!! $script_js !!}

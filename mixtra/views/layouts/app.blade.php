@@ -13,7 +13,7 @@
     <link rel="shortcut icon"
         href="{{ MITBooster::getSetting('favicon')?asset(MITBooster::getSetting('favicon')):asset('assets/images/favicon.png') }}">
     @yield('title')
-    
+
     @include('mitbooster::layouts.app_css')
 
     @stack('head')
@@ -39,7 +39,7 @@
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
-    
+
     @include('mitbooster::layouts.app_js')
 
 	@stack('bottom')

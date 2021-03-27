@@ -38,7 +38,7 @@
 
 <!-- <div class="row">
     <div class="col-12">
- -->       
+ -->
  	@if($alert)
 		ssssss
  	@endif
@@ -48,9 +48,9 @@
 	            	<div class="col-sm-4 selected-action sm-action sm-bulk">
 						@if($button_bulk_action && ( ($button_delete && MITBooster::isDelete()) || $button_selected) )
 						<div class="btn-group">
-							<button type="button" 
-								class="btn waves-effect waves-light btn-sm btn-secondary dropdown-toggle" 
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-check-square"></i> 
+							<button type="button"
+								class="btn waves-effect waves-light btn-sm btn-secondary dropdown-toggle"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-check-square"></i>
 								{{trans("mixtra.button_selected_action")}}
 							</button>
 							<div class="dropdown-menu">
@@ -83,22 +83,22 @@
 		                <div class="btn-group">
 		                	<form method='get' action='{{Request::url()}}'>
 					            <div class="btn-group btn-group-sm">
-				                    <input type="text" class="form-control form-control-sm" 
-				                    	placeholder="{{trans('mixtra.filter_search')}}" 
+				                    <input type="text" class="form-control form-control-sm"
+				                    	placeholder="{{trans('mixtra.filter_search')}}"
 			                    		name="q" value="{{ Request::get('q') }}" />
-					                <button type="submit" 
+					                <button type="submit"
 				                		class="btn waves-effect waves-light btn-sm btn-secondary">
 				                		<i class="fa fa-search"></i></button>
 				                </div>
 			                </form>
 		            	</div>
-			            	
+
 		                <div class="btn-group">
 		                	<form method='get' id='form-limit-paging' action='{{Request::url()}}'>
 		                		<input type="hidden" name="limit" id="limit" value="{{ $limit }}" />
 					            <div class="btn-group btn-group-sm">
-					            	<button type="button" 
-					                	class="btn waves-effect waves-light btn-sm btn-secondary dropdown-toggle" 
+					            	<button type="button"
+					                	class="btn waves-effect waves-light btn-sm btn-secondary dropdown-toggle"
 					                	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $limit }}</button>
 					            	<div class="dropdown-menu">
 					                    <a class="dropdown-item small" href="javascript:{$('#limit').val(5); $('#form-limit-paging').submit()}">5</a>
@@ -132,7 +132,7 @@
 						$to = $result->perPage() * $result->currentPage() - $result->perPage() + $result->count();
 						$total = $result->total();
 						?>
-						{{ trans("mixtra.filter_rows_total") }} : {{ $from }} {{ trans("mixtra.filter_rows_to") }} {{ $to }} 
+						{{ trans("mixtra.filter_rows_total") }} : {{ $from }} {{ trans("mixtra.filter_rows_to") }} {{ $to }}
 						{{ trans("mixtra.filter_rows_of") }} {{ $total }}</p>
 				</div>
 			</div>
@@ -151,7 +151,7 @@
 @push('head')
 	<!--alerts CSS -->
 	<link href="{{ asset('assets/vendor/sweetalert/sweetalert.css') }}" rel="stylesheet" type="text/css">
-	
+
 	<style type="text/css">
 		@media (max-width:768px) {
 			.sm-hide {
@@ -159,7 +159,7 @@
 			}
 			.sm-footer {
 				text-align: center !important;
-			} 
+			}
 			.pagination {
 				align-items: center;
     			justify-content: center;

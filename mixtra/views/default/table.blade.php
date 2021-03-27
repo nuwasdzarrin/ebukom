@@ -6,8 +6,8 @@
         width:0;
         height:0;
         opacity:0;
-        visibility: collapse;       
-    } 
+        visibility: collapse;
+    }
 }
 </style>
 
@@ -59,6 +59,9 @@
     });
 </script>
 @endpush
+{{--@php--}}
+{{--dd(\Request::route()->getName());--}}
+{{--@endphp--}}
 <form id='form-table' method='post' action='{{MITBooster::mainpath("action-selected")}}'>
     <input type='hidden' name='button_name' value=''/>
     <input type='hidden' name='_token' value='{{csrf_token()}}'/>
@@ -86,7 +89,7 @@
                             $class = 'sm-hide';
                             $hide_col++;
                         }
-                        
+
                         $width = $col['width'] ? "min-width:".$col['width']."px" : "";
 
 		                echo "<th style='$width' class='$class'>";
@@ -148,7 +151,7 @@
                         $class = 'sm-hide';
                     }
                 ?>
-                
+
 		            <td class='{{$class}}'>{!! $h !!}</td>
 	            @endforeach
 		        </tr>
@@ -296,27 +299,6 @@
 
             })
         </script>
-
-        <!-- MODAL FOR SORTING DATA-->
-<!--         <div class="modal fade" tabindex="-1" role="dialog" id='advanced_filter_modal'>
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    </div>
-                    <div class="modal-body">
-                        <h4>Overflowing text to show scroll behavior</h4>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
- -->
 
         <div class="modal fade" tabindex="-1" role="dialog" id='advanced_filter_modal'>
             <div class="modal-dialog modal-lg">

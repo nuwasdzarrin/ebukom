@@ -22,7 +22,6 @@ class AdminController extends MITController
             return redirect(MITBooster::adminPath());
         }
 
-
         return view('mitbooster::login');
     }
 

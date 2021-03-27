@@ -57,7 +57,7 @@
             ?>
             @if($module)
             <div class="row sm-header-title">
-                <h4 class="text-themecolor ml-1 mt-1 mr-1"><i class='{{$module->icon}}'></i> {{($page_title)?:$module->name}}</h4> 
+                <h4 class="text-themecolor ml-1 mt-1 mr-1"><i class='{{$module->icon}}'></i> {{($page_title)?:$module->name}}</h4>
                 <!--START BUTTON -->
                 @if(MITBooster::getCurrentMethod() == 'getIndex')
                     @if($button_show)
@@ -109,7 +109,7 @@
             </div>
             @else
             <h4 class="text-themecolor">{{MITBooster::getSetting('appname')}}</h4>
-            <small>SD Islam Qurrota A'yun</small>
+            <small>{{MITBooster::getSetting('school_name')}}</small>
             @endif
             </div>
             @if($module)
@@ -122,12 +122,12 @@
                 </div>
             </div>
             @endif
-        </div>  
-        @endif      
+        </div>
+        @endif
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
-        
+
         <!-- ============================================================== -->
         <!-- Start Page Content -->
         <!-- ============================================================== -->
@@ -136,7 +136,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                 <h3 class="text-{{ Session::get('message_type') }}"><i class="fa fa-info"></i> {{ Session::get('message_type') }}</h3> {!!Session::get('message')!!}
             </div>
-            
+
         @endif
         @if(!empty($alerts))
             @foreach($alerts AS $key)

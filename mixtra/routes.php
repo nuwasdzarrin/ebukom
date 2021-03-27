@@ -26,11 +26,11 @@ Route::group(['middleware' => ['web'], 'namespace' => $namespace], function () {
 
 /* ROUTER FOR WEB */
 Route::group([
-	'middleware' => ['web'], 
-	'prefix' => config('mixtra.ADMIN_PATH'), 
+	'middleware' => ['web'],
+	'prefix' => config('mixtra.ADMIN_PATH'),
 	'namespace' => $namespace,
 ], function () {
-    
+
     Route::get('login', ['uses' => 'AdminController@getLogin', 'as' => 'getLogin']);
 	Route::post('login', ['uses' => 'AdminController@postLogin', 'as' => 'postLogin']);
     Route::get('logout', ['uses' => 'AdminController@getLogout', 'as' => 'getLogout']);
@@ -43,9 +43,6 @@ Route::group([
 
     Route::get('lock-screen', ['uses' => 'AdminController@getLockscreen', 'as' => 'getLockScreen']);
     Route::post('unlock-screen', ['uses' => 'AdminController@postUnlockScreen', 'as' => 'postUnlockScreen']);
-
-
-
 });
 
 // ROUTER FOR OWN CONTROLLER FROM CB
@@ -75,9 +72,10 @@ Route::group([
         }
     }
 
+
+//    Penyakitan
     try {
-        $modules = DB::table('mit_modules')->where('path', '!=', '')->where('controller', '!=', '')
-            ->where('is_protected', 0)->get();
+        $modules = DB::table('mit_modules')->where('path', '!=', '')->where('controller', '!=', '')->where('is_protected', 0)->get();
         foreach ($modules as $v) {
             MITBooster::routeController($v->path, $v->controller);
         }

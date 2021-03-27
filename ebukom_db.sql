@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 09 Feb 2021 pada 17.53
+-- Waktu pembuatan: 22 Mar 2021 pada 16.39
 -- Versi server: 8.0.23-0ubuntu0.20.04.1
--- Versi PHP: 7.3.26-1+ubuntu20.04.1+deb.sury.org+1
+-- Versi PHP: 7.3.27-9+ubuntu20.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -4125,7 +4125,23 @@ INSERT INTO `mit_logs` (`id`, `created_at`, `updated_at`, `ipaddress`, `useragen
 (3934, '2021-02-09 10:10:08', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 1),
 (3935, '2021-02-09 10:16:48', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 29),
 (3936, '2021-02-09 10:17:34', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 2),
-(3937, '2021-02-09 10:19:13', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 33);
+(3937, '2021-02-09 10:19:13', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 33),
+(3938, '2021-02-10 02:20:48', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 1),
+(3939, '2021-02-10 02:21:08', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 29),
+(3940, '2021-02-10 02:22:29', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:85.0) Gecko/20100101 Firefox/85.0', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 33),
+(3941, '2021-02-17 03:43:59', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 1),
+(3942, '2021-02-26 03:43:50', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 1),
+(3943, '2021-02-26 03:47:44', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 33),
+(3944, '2021-02-26 16:34:44', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 29),
+(3945, '2021-02-26 17:06:45', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 33),
+(3946, '2021-03-22 07:39:23', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 1),
+(3947, '2021-03-22 08:01:18', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36', 'http://ebukom.test/admin/users/delete-image', 'Delete the image of Super Admin at Users Management', '', 1),
+(3948, '2021-03-22 08:01:21', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36', 'http://ebukom.test/admin/users/edit-save/1', 'Update data Super Admin at Users Management', '<table class=\"table table-striped\"><thead><tr><th>Key</th><th>Old Value</th><th>New Value</th></thead><tbody><tr><td>password</td><td>$2y$10$LEmUwusWGLLz6UEG070UYuMbd7i7NmkULCA8h69SeQnf9JRchKC2C</td><td></td></tr></tbody></table>', 1),
+(3949, '2021-03-22 08:01:36', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36', 'http://ebukom.test/admin/users/edit-save/1', 'Update data Super Admin at Users Management', '<table class=\"table table-striped\"><thead><tr><th>Key</th><th>Old Value</th><th>New Value</th></thead><tbody><tr><td>photo</td><td></td><td>uploads/1/2021-03/posibel.png</td></tr><tr><td>nik</td><td></td><td></td></tr><tr><td>password</td><td>$2y$10$LEmUwusWGLLz6UEG070UYuMbd7i7NmkULCA8h69SeQnf9JRchKC2C</td><td></td></tr><tr><td>student_id</td><td></td><td></td></tr><tr><td>telp</td><td></td><td></td></tr><tr><td>alamat</td><td></td><td></td></tr><tr><td>user_info</td><td></td><td></td></tr></tbody></table>', 1),
+(3950, '2021-03-22 08:02:02', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 29),
+(3951, '2021-03-22 08:06:48', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36', 'http://ebukom.test/admin/teacher_report_one/add-save', 'Add New Data  at Weekly Teacher Report', '', 29),
+(3952, '2021-03-22 08:12:02', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36', 'http://ebukom.test/admin/report_alquran/add-save', 'Add New Data  at Qur\'anic Learning', '', 29),
+(3953, '2021-03-22 08:14:00', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:86.0) Gecko/20100101 Firefox/86.0', 'http://ebukom.test/admin/login', ' login with IP Address 127.0.0.1', '', 213);
 
 -- --------------------------------------------------------
 
@@ -4391,20 +4407,20 @@ CREATE TABLE `mit_settings` (
 --
 
 INSERT INTO `mit_settings` (`id`, `created_at`, `updated_at`, `name`, `content`, `content_input_type`, `dataenum`, `helper`, `group_setting`, `label`) VALUES
-(1, '2019-10-27 18:54:23', NULL, 'login_background_image', 'uploads/2020-09/1a06249c62816546d0ff6332ecf783d6.JPG', 'upload_image', NULL, NULL, 'Login Register Style', 'Login Background Image'),
+(1, '2019-10-27 18:54:23', NULL, 'login_background_image', 'uploads/2021-03/9e1938e133a6801fc05b9405d92bbcc8.jpg', 'upload_image', NULL, NULL, 'Login Register Style', 'Login Background Image'),
 (2, '2019-10-27 18:54:23', NULL, 'appname', 'Buku Komunikasi Siswa', 'text', NULL, NULL, 'Application Setting', 'Application Name'),
-(3, '2019-10-27 18:54:23', NULL, 'logo_dark', 'uploads/2020-09/5fdc44a0b018264f0d6f399a9dd7092e.png', 'upload_image', NULL, 'PNG File (Recomended Size: 250 x 132px, 72dpi)', 'Application Setting', 'Logo Dark'),
-(4, '2019-10-27 18:54:23', NULL, 'logo_light', 'uploads/2020-09/17566232e2fbd8d3533a0fd7fd11b15a.png', 'upload_image', NULL, 'PNG File (Recomended Size: 40 x 40px, 72dpi)', 'Application Setting', 'Logo Light'),
+(3, '2019-10-27 18:54:23', NULL, 'logo_dark', 'uploads/2021-03/a4a2637f4d6b548835a812cebc09e4f6.png', 'upload_image', NULL, 'PNG File (Recomended Size: 250 x 132px, 72dpi)', 'Application Setting', 'Logo Dark'),
+(4, '2019-10-27 18:54:23', NULL, 'logo_light', 'uploads/2021-03/4f240bb42054bedc770f881b4a8b925f.png', 'upload_image', NULL, 'PNG File (Recomended Size: 40 x 40px, 72dpi)', 'Application Setting', 'Logo Light'),
 (5, '2019-10-27 18:54:23', NULL, 'logo_light_text', NULL, 'upload_image', NULL, 'PNG File (Recomended Size: 108 x 21px, 72dpi)', 'Application Setting', 'Logo Light Text'),
-(6, '2019-10-27 18:54:23', NULL, 'favicon', 'uploads/2020-09/cdb451febe876369035e1b0e14110f84.png', 'upload_image', NULL, 'PNG File (Recomended Size: 32 x 32px, 72dpi)', 'Application Setting', 'Favicon'),
+(6, '2019-10-27 18:54:23', NULL, 'favicon', 'uploads/2021-03/315a2f4b2a7a9c121892184554ebd9f4.png', 'upload_image', NULL, 'PNG File (Recomended Size: 32 x 32px, 72dpi)', 'Application Setting', 'Favicon'),
 (7, '2019-10-27 18:54:23', NULL, 'api_debug_mode', 'false', 'select', 'true,false', NULL, 'Application Setting', 'API Debug Mode'),
-(8, '2019-10-27 18:54:23', NULL, 'email_sender', 'thonnyxx@gmail.com', 'text', NULL, NULL, 'Email Setting', 'Email Sender'),
+(8, '2019-10-27 18:54:23', NULL, 'email_sender', 'admin@admin.com', 'text', NULL, NULL, 'Email Setting', 'Email Sender'),
 (9, '2019-10-27 18:54:23', NULL, 'smtp_driver', 'mail', 'select', 'smtp,mail,sendmail', NULL, 'Email Setting', 'Mail Driver'),
-(10, '2019-10-27 18:54:23', NULL, 'smtp_host', '', 'text', NULL, NULL, 'Email Setting', 'SMTP Host'),
+(10, '2019-10-27 18:54:23', NULL, 'smtp_host', NULL, 'text', NULL, NULL, 'Email Setting', 'SMTP Host'),
 (11, '2019-10-27 18:54:23', NULL, 'smtp_port', '25', 'text', NULL, 'default 25', 'Email Setting', 'SMTP Port'),
-(12, '2019-10-27 18:54:23', NULL, 'smtp_username', '', 'text', NULL, NULL, 'Email Setting', 'SMTP Username'),
-(13, '2019-10-27 18:54:23', NULL, 'smtp_password', '', 'text', NULL, NULL, 'Email Setting', 'SMTP Password'),
-(14, '2020-07-13 22:11:52', NULL, 'company', 'SDI QURROTA A\'YUN', 'text', NULL, 'Enter Your Company Name', 'Company', 'Company Name');
+(12, '2019-10-27 18:54:23', NULL, 'smtp_username', NULL, 'text', NULL, NULL, 'Email Setting', 'SMTP Username'),
+(13, '2019-10-27 18:54:23', NULL, 'smtp_password', NULL, 'text', NULL, NULL, 'Email Setting', 'SMTP Password'),
+(14, '2020-07-13 22:11:52', NULL, 'company', 'Duta School', 'text', NULL, 'Enter Your Company Name', 'Company', 'Company Name');
 
 -- --------------------------------------------------------
 
@@ -4468,7 +4484,7 @@ CREATE TABLE `mit_users` (
 --
 
 INSERT INTO `mit_users` (`id`, `created_at`, `updated_at`, `name`, `photo`, `username`, `nik`, `password`, `student_id`, `telp`, `alamat`, `user_info`, `mit_privileges_id`) VALUES
-(1, '2019-10-27 11:54:23', '2020-10-15 21:16:13', 'Super Admin', 'uploads/1/2020-10/img_20200305_wa0023.jpg', 'root', NULL, '$2y$10$LEmUwusWGLLz6UEG070UYuMbd7i7NmkULCA8h69SeQnf9JRchKC2C', NULL, NULL, NULL, '', 1),
+(1, '2019-10-27 11:54:23', '2021-03-22 08:01:36', 'Super Admin', 'uploads/1/2021-03/posibel.png', 'root', NULL, '$2y$10$LEmUwusWGLLz6UEG070UYuMbd7i7NmkULCA8h69SeQnf9JRchKC2C', NULL, NULL, NULL, '', 1),
 (2, '2019-10-27 04:54:23', NULL, 'Yulianita Rahmawati, S.Kom', NULL, 'nita', '123', '$2y$10$LEmUwusWGLLz6UEG070UYuMbd7i7NmkULCA8h69SeQnf9JRchKC2C', NULL, '895335439109', 'Jl. Tirtotejo', 'Wali kelas 1 Ali', 2),
 (3, '2019-10-27 04:54:23', NULL, 'Reni Setiawati, S.Pd', NULL, 'reni', '123', '$2y$10$LEmUwusWGLLz6UEG070UYuMbd7i7NmkULCA8h69SeQnf9JRchKC2C', NULL, '81357930592', 'Jl. Nyai Ageng Serang 25 Pinggirsari Ponorogo', 'Wali kelas 2 Umar', 2),
 (4, '2019-10-27 04:54:23', NULL, 'Widat Muhsinatin, S.Pd.I', NULL, 'widat', '123', '$2y$10$LEmUwusWGLLz6UEG070UYuMbd7i7NmkULCA8h69SeQnf9JRchKC2C', NULL, '85233082879', 'Jl. Pemanahan 05 Kadipaten Ponorogo', 'Wali kelas 3 Ali', 2),
@@ -4785,7 +4801,8 @@ CREATE TABLE `sdi_quran_report` (
 --
 
 INSERT INTO `sdi_quran_report` (`id`, `created_at`, `updated_at`, `student_id`, `w_jilid`, `w_hal`, `w_nilai`, `w_lu`, `t_doa`, `t_hal`, `t_nilai`) VALUES
-(5, '2020-10-14 03:31:46', NULL, 148, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(5, '2020-10-14 03:31:46', NULL, 148, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, '2021-03-22 08:12:02', NULL, 187, 'Al-Baqarah', '12', '90', 'Lanjut', 'Do\'a Makan', '99', '80');
 
 -- --------------------------------------------------------
 
@@ -6094,7 +6111,8 @@ INSERT INTO `sdi_weekly_report` (`id`, `created_at`, `updated_at`, `student_id`,
 (386, '2020-11-09 23:00:22', NULL, 33, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', NULL, NULL, 2, 2),
 (387, '2020-11-10 00:13:49', NULL, 147, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', NULL, NULL, 2, 2),
 (388, '2020-11-10 00:39:06', NULL, 173, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', 'Senin', NULL, NULL, 2, 2),
-(389, '2020-11-10 02:22:26', NULL, 158, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', NULL, NULL, 2, 2);
+(389, '2020-11-10 02:22:26', NULL, 158, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', 'Senin;Selasa;Rabu;Kamis;Jumat;Sabtu;Ahad', NULL, NULL, 2, 2),
+(390, '2021-03-22 08:06:48', NULL, 187, NULL, NULL, 'Rabu', 'Selasa;Jumat', 'Jumat;Sabtu', 'Rabu', 'Rabu', 'Kamis', NULL, NULL, 'Senin;Selasa;Kamis', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>Jangan lupa di perbaiki lagi</p>', '<p>di perbaiki lagi</p>', 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -6270,7 +6288,7 @@ ALTER TABLE `mit_email_templates`
 -- AUTO_INCREMENT untuk tabel `mit_logs`
 --
 ALTER TABLE `mit_logs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3938;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3954;
 
 --
 -- AUTO_INCREMENT untuk tabel `mit_menus`
@@ -6354,7 +6372,7 @@ ALTER TABLE `sdi_gender`
 -- AUTO_INCREMENT untuk tabel `sdi_quran_report`
 --
 ALTER TABLE `sdi_quran_report`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `sdi_reading_parents_weekly_report`
@@ -6378,7 +6396,7 @@ ALTER TABLE `sdi_teacher`
 -- AUTO_INCREMENT untuk tabel `sdi_weekly_report`
 --
 ALTER TABLE `sdi_weekly_report`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=390;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=391;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
