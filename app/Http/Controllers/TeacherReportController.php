@@ -1,5 +1,5 @@
 <?php
-
+//used by teacher
 namespace App\Http\Controllers;
 
 use Request;
@@ -7,29 +7,29 @@ use Illuminate\Support\Facades\Validator;
 use DB;
 use MITBooster;
 
-class TeacherReportOneController extends \mixtra\controllers\MITController
+class TeacherReportController extends \mixtra\controllers\MITController
 {
    	public function init() {
 		# START CONFIGURATION DO NOT REMOVE THIS LINE
 		$this->table               = 'sdi_weekly_report';
 		$this->primary_key         = 'id';
         $this->title_field         = "wudhu";
-		$this->button_action_style = 'button_icon';	
-		$this->button_import 	   = FALSE;	
-		$this->button_export 	   = FALSE;	
+		$this->button_action_style = 'button_icon';
+		$this->button_import 	   = FALSE;
+		$this->button_export 	   = FALSE;
         $this->class_id            = DB::table('sdi_class')->where('class_wali_id', MITBooster::myId())->first()->id;
         $this->class_grade         = DB::table('sdi_class')->where('class_wali_id', MITBooster::myId())->first()->class_grade;
         // print_r($this->class_id);
         // echo " grade  ";
         // print_r($this->class_grade);
 		# END CONFIGURATION DO NOT REMOVE THIS LINE
-	
+
 		# START COLUMNS DO NOT REMOVE THIS LINE
 		$this->col = array();
 		$this->col[] = array("label"=>"Student","name"=>"student_id", 'join' => 'sdi_student,student_name');
         $this->col[] = array("label"=>"Week Number","name"=>"created_at", "callback"=> function($row){
             $date = \Carbon\Carbon::parse($row->created_at);
-            return 
+            return
             "Pekan Ke " . "<span class='ml-md-1 badge badge-info'>{$date->weekOfMonth}</span> "
             . "Bulan  <span class='ml-md-1 badge badge-success'>{$date->format('F')}</span>";
         });
@@ -73,7 +73,7 @@ class TeacherReportOneController extends \mixtra\controllers\MITController
         //     }
         // });
 
-		
+
 		# END COLUMNS DO NOT REMOVE THIS LINE
 
 		# START FORM DO NOT REMOVE THIS LINE
@@ -108,19 +108,19 @@ class TeacherReportOneController extends \mixtra\controllers\MITController
         $this->form[] = ['label'=>'Shalat Dengan Kesadaran','name'=>'kesadaran', 'icon' => 'fa fa-users', 'type'=>'label','class'=>'title'];
         $this->form[] = ['name'=>'hr','type'=>'hr'];
         if ($this->class_grade == '1' || $this->class_grade == '2' ){
-    		$this->form[] = ['label'=>'Berwudhu Dengan Tertib & Sempurna','name'=>'wudhu','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id'];	
+    		$this->form[] = ['label'=>'Berwudhu Dengan Tertib & Sempurna','name'=>'wudhu','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id'];
             $this->form[] = ['label'=>'Tuntas Gerakan / Bacaan Sholat','name'=>'sholat','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id'];
         } elseif ($this->class_grade == '3' || $this->class_grade == '4' || $this->class_grade == '5' ){
             $this->form[] = ['label'=>'Sholat Dhuha','name'=>'dhuha','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id'];
         } elseif($this->class_grade == '6') {
-            $this->form[] = ['label'=>'Sholat Dhuhur Dengan Tertib, Khusyu dan tumaninah','name'=>'dhuhur','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id']; 
+            $this->form[] = ['label'=>'Sholat Dhuhur Dengan Tertib, Khusyu dan tumaninah','name'=>'dhuhur','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id'];
             $this->form[] = ['label'=>'Sholat Ashar Dengan Tertib, Khusyu dan tumaninah','name'=>'ashar','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id'];
             $this->form[] = ['label'=>'Sholat Dhuha','name'=>'dhuha','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id'];
         } else {
-            $this->form[] = ['label'=>'Berwudhu Dengan Tertib & Sempurna','name'=>'wudhu','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id']; 
+            $this->form[] = ['label'=>'Berwudhu Dengan Tertib & Sempurna','name'=>'wudhu','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id'];
             $this->form[] = ['label'=>'Tuntas Gerakan / Bacaan Sholat','name'=>'sholat','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id'];
             $this->form[] = ['label'=>'Sholat Dhuha','name'=>'dhuha','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id'];
-            $this->form[] = ['label'=>'Sholat Dhuhur Dengan Tertib, Khusyu dan tumaninah','name'=>'dhuhur','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id']; 
+            $this->form[] = ['label'=>'Sholat Dhuhur Dengan Tertib, Khusyu dan tumaninah','name'=>'dhuhur','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id'];
             $this->form[] = ['label'=>'Sholat Ashar Dengan Tertib, Khusyu dan tumaninah','name'=>'ashar','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id'];
             $this->form[] = ['label'=>'Sholat Dhuha','name'=>'dhuha','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week,day_name', 'orderby' => 'id'];
         }
@@ -156,9 +156,9 @@ class TeacherReportOneController extends \mixtra\controllers\MITController
         $this->form[] = ['label'=>'Informasi / Tanggapan','name'=>'berbakti', 'icon' => 'fa fa-info', 'type'=>'label','class'=>'title'];
         $this->form[] = ['label'=>'Informasi Dari Guru/Orang Tua','name'=>'information','type'=>'wysiwyg'];
         $this->form[] = ['label'=>'Tanggapan Dari Orang Tua/Guru','name'=>'response','type'=>'wysiwyg'];
-        
+
 		# END FORM DO NOT REMOVE THIS LINE
-        
+
 
 		/*
         | ----------------------------------------------------------------------
@@ -205,7 +205,7 @@ class TeacherReportOneController extends \mixtra\controllers\MITController
         */
         $this->button_selected = [];
         $this->button_selected[] = ['label' => 'Approve/Paraf', 'type' => 'normal', 'title' => 'Approve/Paraf', 'icon' => 'file-code-o', 'name' => 'approve'];
-                
+
         /*
         | ----------------------------------------------------------------------
         | Add alert message to this module at overheader
@@ -218,9 +218,9 @@ class TeacherReportOneController extends \mixtra\controllers\MITController
         $this->alert        = array();
         $this->alert[]      = ['message'=>'Perhatian Jika Tombol ACC Muncul Maka Guru Belum Memberikan ACC pada laporan Mingguan.<br/>Response diisikan 1 kali setiap Minggu, Warna Hijau Berarti sudah ada isinya, warnah biru masih kosong<br/>Data yang ditampilkan adalah data seminggu terakhir, Untuk melihat data semuanya masuk menu report<br/>Untuk menambahkan data harap melihat daftar jika data sudah ada tinggal edit saja','type'=>'warning', 'title' => 'Perhatian !'];
 
-                
 
-        
+
+
         /*
         | ----------------------------------------------------------------------
         | Add more button to header button
@@ -244,7 +244,7 @@ class TeacherReportOneController extends \mixtra\controllers\MITController
         */
         $this->table_row_color = array();
 
-        
+
         /*
         | ----------------------------------------------------------------------
         | You may use this bellow array to add statistic at dashboard
@@ -277,9 +277,9 @@ class TeacherReportOneController extends \mixtra\controllers\MITController
         |
         */
         $this->pre_index_html = [];
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include HTML Code after index table
@@ -289,9 +289,9 @@ class TeacherReportOneController extends \mixtra\controllers\MITController
         |
         */
         $this->post_index_html = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include Javascript File
@@ -301,9 +301,9 @@ class TeacherReportOneController extends \mixtra\controllers\MITController
         |
         */
         $this->load_js = array();
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Add css style at body
@@ -313,9 +313,9 @@ class TeacherReportOneController extends \mixtra\controllers\MITController
         |
         */
         $this->style_css = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include css File
@@ -325,7 +325,7 @@ class TeacherReportOneController extends \mixtra\controllers\MITController
         |
         */
         $this->load_css = array();
-				
+
 	}
 
 	 /*
@@ -359,10 +359,13 @@ class TeacherReportOneController extends \mixtra\controllers\MITController
             $class      = DB::table('sdi_class')->where('class_wali_id', MITBooster::myId())->first();
             $student    = DB::table('sdi_student')->where('class_id', $class->id)->get();
             foreach ($student as $key) {
-                $student_id[] = $key->id; 
+                $student_id[] = $key->id;
             }
             $query->whereIn('sdi_weekly_report.student_id', $student_id);
-            $query->whereBetween('sdi_weekly_report.created_at', [$start,$end]);
+//            $query->whereBetween('sdi_weekly_report.created_at', [$start,$end]);
+        } elseif ( MITBooster::myPrivilegeId() == 4 ) {
+            $this->student_id = json_decode(DB::table('mit_users')->where('id', MITBooster::myId())->first()->student_id, true);
+            $query->whereIn('student_id', $this->student_id);
         }
     }
 

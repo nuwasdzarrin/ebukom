@@ -7,63 +7,71 @@ use Illuminate\Support\Facades\Validator;
 use DB;
 use MITBooster;
 
-class ReportReadController extends \mixtra\controllers\MITController
+class ParentController extends \mixtra\controllers\MITController
 {
-    public function init() {
-    	$this->table               = 'sdi_reading_parents_weekly_report';
-        $this->primary_key         = 'id';
-        $this->title_field         = "id";
-        $this->orderby             = "created_at,DESC";
-        $this->button_action_style = 'button_icon';
-        $this->button_action_width = '50px';
-        $this->show_numbering      = true;
-        $this->button_import       = false;
-        $this->button_export       = true;
-        $this->button_bulk_action  = false;
-        $this->button_add          = false;
-        $this->button_edit         = false;
-        $this->button_show         = true;
-        $this->button_delete       = false;
-        $this->button_detail       = false;
-        $this->button_table_action = false;
+   	public function init() {
+		# START CONFIGURATION DO NOT REMOVE THIS LINE
+		$this->table               = 'mit_users';
+		$this->primary_key         = 'id';
+		$this->title_field         = "name";
+		$this->button_action_style = 'button_icon';
+		$this->button_import 	   = FALSE;
+		$this->button_export 	   = FALSE;
+		# END CONFIGURATION DO NOT REMOVE THIS LINE
 
-        $this->student_id          = json_decode(DB::table('mit_users')->where('id', MITBooster::myId())->first()->student_id, true);
+		# START COLUMNS DO NOT REMOVE THIS LINE
+		$this->col = array();
+		$this->col[] = array("label"=>"Name","name"=>"name");
+		$this->col[] = array("label"=>"Username","name"=>"username");
+        $this->col[] = array("label"=>"Telp","name"=>"telp");
+        $this->col[] = array("label"=>"Students","name"=>"student_id");
+        $this->col[] = array("label"=>"Alamat","name"=>"alamat");
+		# END COLUMNS DO NOT REMOVE THIS LINE
 
-        $this->col = [];
-        $this->col[] = ["label"=>"Hari, Tanggal","name"=>"created_at", "callback"=> function($row){
-            $date = \Carbon\Carbon::parse($row->created_at);
-            return 
-            "Pekan Ke " . "<span class='ml-md-1 badge badge-info'>{$date->weekOfMonth}</span> "
-            . "Bulan  <span class='ml-md-1 badge badge-success'>{$date->format('F')}</span>";
-        }];
-        $this->col[] = ["label"=>"Siswa","name"=>"student_id", 'join'=>'sdi_student,student_name'];
-        $this->col[] = ["label"=>"Komik/Cerpen/Buku Cerita","name"=>"komik"];
-        $this->col[] = ["label"=>"Buku Pelajaran","name"=>"b_pelajaran"];
-        $this->col[] = ["label"=>"Buku Lainya","name"=>"b_lainya"];
-        $this->col[] = array("label"=>"Value","name"=>"total_perday", "callback"=> function($row){
-            $day = \Carbon\Carbon::getDays();
-            $data = explode(',', $row->total_perday);
-            foreach ($data as $key => $val) {
-                $hasil .= $day[$key] . ": <strong>" . $val . "</strong><br/>" ;
-            }
-            return $hasil;
-        });
-    
+		# START FORM DO NOT REMOVE THIS LINE
+		$this->form = array();
+		$this->form[] = array("label"=>"Name","name"=>"name",'required'=>true,'validation'=>'required|min:3');
+		$this->form[] = array("label"=>"Username","name"=>"username",'required'=>true,'type'=>'text', 'validation' => 'required|unique:mit_users,username');
+        $this->form[]	 = array('label' => 'Telp', 'name' => 'telp', 'required' => true, 'type' => 'text', 'validation' => 'required|min:3');
 
-        /*
+		$this->form[] = array("label"=>"Address","name"=>"alamat",'required'=>true,'type'=>'textarea');
+
+        // Custom select 2 with join
+
+		$this->form[] = [
+            "label"             => "Student",
+            "name"              => "student_id",
+            "type"              => "select2Parents",
+            "datatable_ajax"    => true,
+            "required"          => true,
+            "multiple"          => true,
+            "datatable"         => "sdi_student,class_id,sdi_class,id",
+            "datatable_format"  => "nis,' - ',student_name,' - ',class_grade,' ',class_name",
+            "help"              => "Select Multiple Students From This Parents",
+        ];
+
+        // End Custom
+        $this->form[] = array("label"=>"Password","name"=>"password","type"=>"password","help"=>"Please leave empty if not change");
+        $this->form[] = array("label"=>"Password Confirmation","name"=>"password_confirmation","type"=>"password","help"=>"Please leave empty if not change");
+
+        #hide Form
+        // $this->form[] = array('label'=>'Previlage','name'=>'mit_privileges_id','type'=>'hidden','value'=>'4');
+		# END FORM DO NOT REMOVE THIS LINE
+
+
+		/*
         | ----------------------------------------------------------------------
         | Sub Module
         | ----------------------------------------------------------------------
         | @label          = Label of action
         | @path           = Path of sub module
-        | @foreign_key    = foreign key of sub table/module
+        | @foreign_key 	  = foreign key of sub table/module
         | @button_color   = Bootstrap Class (primary,success,warning,danger)
         | @button_icon    = Font Awesome Class
         | @parent_columns = Sparate with comma, e.g : name,created_at
         |
         */
         $this->sub_module = array();
-
 
 
         /*
@@ -73,8 +81,8 @@ class ReportReadController extends \mixtra\controllers\MITController
         | @label       = Label of action
         | @url         = Target URL, you can use field alias. e.g : [id], [name], [title], etc
         | @icon        = Font awesome class icon. e.g : fa fa-bars
-        | @color       = Default is primary. (primary, warning, succecss, info)
-        | @showIf      = If condition when action show. Use field alias. e.g : [id] == 1
+        | @color 	   = Default is primary. (primary, warning, succecss, info)
+        | @showIf 	   = If condition when action show. Use field alias. e.g : [id] == 1
         |
         */
         $this->addaction = array();
@@ -85,14 +93,14 @@ class ReportReadController extends \mixtra\controllers\MITController
         | Add More Button Selected
         | ----------------------------------------------------------------------
         | @label       = Label of action
-        | @icon        = Icon from fontawesome
-        | @name        = Name of button
+        | @icon 	   = Icon from fontawesome
+        | @name 	   = Name of button
         | Then about the action, you should code at actionButtonSelected method
         |
         */
         $this->button_selected = array();
 
-                
+
         /*
         | ----------------------------------------------------------------------
         | Add alert message to this module at overheader
@@ -102,9 +110,9 @@ class ReportReadController extends \mixtra\controllers\MITController
         |
         */
         $this->alert        = array();
-                
 
-        
+
+
         /*
         | ----------------------------------------------------------------------
         | Add more button to header button
@@ -128,7 +136,7 @@ class ReportReadController extends \mixtra\controllers\MITController
         */
         $this->table_row_color = array();
 
-        
+
         /*
         | ----------------------------------------------------------------------
         | You may use this bellow array to add statistic at dashboard
@@ -161,9 +169,9 @@ class ReportReadController extends \mixtra\controllers\MITController
         |
         */
         $this->pre_index_html = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include HTML Code after index table
@@ -173,9 +181,9 @@ class ReportReadController extends \mixtra\controllers\MITController
         |
         */
         $this->post_index_html = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include Javascript File
@@ -185,9 +193,9 @@ class ReportReadController extends \mixtra\controllers\MITController
         |
         */
         $this->load_js = array();
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Add css style at body
@@ -197,9 +205,9 @@ class ReportReadController extends \mixtra\controllers\MITController
         |
         */
         $this->style_css = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include css File
@@ -209,9 +217,10 @@ class ReportReadController extends \mixtra\controllers\MITController
         |
         */
         $this->load_css = array();
-    }
 
-    /*
+	}
+
+	 /*
     | ----------------------------------------------------------------------
     | Hook for button selected
     | ----------------------------------------------------------------------
@@ -234,17 +243,7 @@ class ReportReadController extends \mixtra\controllers\MITController
     */
     public function hook_query_index(&$query)
     {
-        if ( MITBooster::myPrivilegeId() == 4 ) {
-            $this->student_id = json_decode(DB::table('mit_users')->where('id', MITBooster::myId())->first()->student_id, true);
-            $query->whereIn('student_id', $this->student_id);
-        } elseif( MITBooster::myPrivilegeId() == 2 ){
-            $class      = DB::table('sdi_class')->where('class_wali_id', MITBooster::myId())->first();
-            $student    = DB::table('sdi_student')->where('class_id', $class->id)->get();
-            foreach ($student as $key) {
-                $student_id[] = $key->id; 
-            }
-            $query->whereIn('student_id', $student_id);
-        }
+        $query->where('mit_users.mit_privileges_id', '4')->get();
     }
 
     /*
@@ -255,7 +254,33 @@ class ReportReadController extends \mixtra\controllers\MITController
     */
     public function hook_row_index($column_index, &$column_value)
     {
-        //Your code here
+        // tampilkan
+    }
+
+    /*
+    | ----------------------------------------------------------------------
+    | Hook for manipulate row of data table html
+    | ----------------------------------------------------------------------
+    |
+    */
+    public function hook_row_data($row, $column_index, &$column_value)
+    {
+        switch ($column_index) {
+                case '4':
+                $column = json_decode($row->student_id, true);
+                $result = DB::table('sdi_student AS A')
+                    ->join('sdi_class AS B', 'B.id', 'A.class_id')
+                    ->whereIn('A.id', $column)
+                    ->get();
+                    foreach( $result AS $key ):
+                      $val .= "<a class='ml-1' href='".MITBooster::adminPath()."/student/detail/".$key->id."'><span class='badge badge-info'>{$key->student_name} ( {$key->class_grade} - {$key->class_name} )</span></a>";
+                    endforeach;
+                    $column_value = $val;
+                    break;
+                default:
+                    # code...
+                    break;
+        }
     }
 
     /*
@@ -267,6 +292,9 @@ class ReportReadController extends \mixtra\controllers\MITController
     */
     public function hook_before_add(&$postdata)
     {
+        $postdata['mit_privileges_id'] = '4';
+        $postdata['student_id'] = json_encode($postdata['student_id'], JSON_FORCE_OBJECT);
+        unset($postdata['password_confirmation']);
     }
 
     /*
@@ -291,6 +319,9 @@ class ReportReadController extends \mixtra\controllers\MITController
     */
     public function hook_before_edit(&$postdata, $id)
     {
+        $postdata['mit_privileges_id'] = '4';
+        $postdata['student_id'] = json_encode($postdata['student_id'], JSON_FORCE_OBJECT);
+        unset($postdata['password_confirmation']);
     }
 
     /*

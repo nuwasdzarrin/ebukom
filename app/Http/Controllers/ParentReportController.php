@@ -1,5 +1,5 @@
 <?php
-
+//used by prev parent
 namespace App\Http\Controllers;
 
 use Request;
@@ -7,44 +7,71 @@ use Illuminate\Support\Facades\Validator;
 use DB;
 use MITBooster;
 
-class ReportAlquranController extends \mixtra\controllers\MITController
+class ParentReportController extends \mixtra\controllers\MITController
 {
     public function init() {
-        
+
         # START CONFIGURATION DO NOT REMOVE THIS LINE
-        $this->table               = 'sdi_quran_report';
+        $this->table               = 'sdi_weekly_report';
         $this->primary_key         = 'id';
-        $this->title_field         = "id";
-        $this->button_action_style = 'button_icon'; 
-        $this->button_import       = FALSE; 
-        $this->button_export       = FALSE; 
+        $this->title_field         = "student_id";
+        $this->button_action_style = 'button_icon';
+        $this->button_action_width = '150px';
+        $this->button_import       = FALSE;
+        $this->button_export       = FALSE;
         # END CONFIGURATION DO NOT REMOVE THIS LINE
-        $this->class_id            = DB::table('sdi_class')->where('class_wali_id', MITBooster::myId())->first()->id;
-    
+        $this->student_id          = json_decode(DB::table('mit_users')->where('id', MITBooster::myId())->first()->student_id, true);
+
         # START COLUMNS DO NOT REMOVE THIS LINE
         $this->col = array();
         $this->col[] = array("label"=>"Hari, Tanggal","name"=>"created_at", "callback"=> function($row){
             $date = \Carbon\Carbon::parse($row->created_at);
-            return $date->format('l, d-m-Y');
+            return
+            "Pekan Ke " . "<span class='ml-md-1 badge badge-info'>{$date->weekOfMonth}</span> "
+            . "Bulan  <span class='ml-md-1 badge badge-success'>{$date->format('F')}</span>";
         });
-        $this->col[] = array("label"=>"Siswa","name"=>"student_id", 'join'=>'sdi_student,student_name');
-        $this->col[] = array("label"=>"Jilid/Surah","name"=>"w_jilid");
-        $this->col[] = array("label"=>"Hal/Ayat","name"=>"w_hal");
-        $this->col[] = array("label"=>"Nilai","name"=>"w_nilai");
-        $this->col[] = array("label"=>"Lanjut/Ulang","name"=>"w_lu");
-        $this->col[] = array("label"=>"Al-Qur'an Surah/Hadits/Do'a","name"=>"t_doa");
-        $this->col[] = array("label"=>"Hal/Ayat","name"=>"t_hal");
-        $this->col[] = array("label"=>"Nilai","name"=>"t_nilai");
+        $this->col[] = array("label"=>"Student Name","name"=>"student_id", 'join'=>'sdi_student,student_name');
+        $this->col[] = array("label"=>"Kebersihan","name"=>"parents_bangun_pagi","callback_php"=>'!empty([parents_bangun_pagi]) ? count(explode(";",[parents_bangun_pagi])) : ""');
+        $this->col[] = array("label"=>"Mandiri","name"=>"parents_mandiri","callback_php"=>'!empty([parents_mandiri]) ? count(explode(";",[parents_mandiri])) : ""');
+        $this->col[] = array("label"=>"Subuh","name"=>"parents_subuh","callback_php"=>'!empty([parents_subuh]) ? count(explode(";",[parents_subuh])) : ""');
+        $this->col[] = array("label"=>"Dhuhur","name"=>"parents_dhuhur","callback_php"=>'!empty([parents_dhuhur]) ? count(explode(";",[parents_dhuhur])) : ""');
+        $this->col[] = array("label"=>"Ashar","name"=>"parents_ashar","callback_php"=>'!empty([parents_ashar]) ? count(explode(";",[parents_ashar])) : ""');
+        $this->col[] = array("label"=>"Magrib","name"=>"parents_magrib","callback_php"=>'!empty([parents_magrib]) ? count(explode(";",[parents_magrib])) : ""');
+        $this->col[] = array("label"=>"Isya","name"=>"parents_isya","callback_php"=>'!empty([parents_isya]) ? count(explode(";",[parents_isya])) : ""');
+        $this->col[] = array("label"=>"Mendoakan Ortu","name"=>"parents_mendoakan","callback_php"=>'!empty([parents_mendoakan]) ? count(explode(";",[parents_mendoakan])) : ""');
+        $this->col[] = array("label"=>"Patuh & Santun Ke Ortu","name"=>"parents_patuh","callback_php"=>'!empty([parents_patuh]) ? count(explode(";",[parents_patuh])) : ""');
+        $this->col[] = array("label"=>"Status","name"=>"parents_status", "callback"=> function($row){
+            if ($row->parents_status == '1'){
+                return "<span class='badge badge-success'><i class='fa fa-check-square-o'></i></span>";
+            } else {
+                return "<span class='badge badge-warning'><i class='fa fa-clock-o'></i></span>";
+            }
+        });
+        $this->col[] = array("label"=>"Total","name"=>"id","callback"=> function($row){
+            $total = DB::table($this->table)->selectRaw('CONCAT_WS(";", COALESCE(parents_bangun_pagi), COALESCE(parents_mandiri),COALESCE(parents_subuh), COALESCE(parents_dhuhur), COALESCE(parents_ashar), COALESCE(parents_magrib), COALESCE(parents_isya), COALESCE(parents_mendoakan), COALESCE(parents_patuh)) AS total')->where('id', $row->id)->first();
+            $total = count(explode(";",$total->total));
+            return $total;
+        });
+
+        // $this->col[] = array("label"=>"Response","name"=>"id", "visible" => TRUE, "callback"=> function($row){
+        //     $id = DB::table('sdi_response')->where('weekly_report_id', $row->id)->first();
+        //     if (!empty($id)) {
+        //         return '<a class="btn btn-xs btn-success" href="' . MITBooster::adminpath("response/edit/{$id->id}") . '" target="_self"><i class="fa fa-comments"></i></a>';
+        //     } else {
+        //         return '<a class="btn btn-xs btn-info" href="' . MITBooster::adminpath("response/add/{$row->id}") . '" target="_self"><i class="fa fa-comments"></i></a>';
+        //     }
+        // });
         # END COLUMNS DO NOT REMOVE THIS LINE
 
         # START FORM DO NOT REMOVE THIS LINE
         $this->form = array();
-        if ( MITBooster::myPrivilegeId() == 2 ) {
-             $this->form[] = [
+        if ( MITBooster::myPrivilegeId() == 4 ) {
+            $this->student_id = implode(',',$this->student_id);
+            $this->form[] = [
                 "label"             => "Nama Siswa",
                 "name"              => "student_id",
                 "type"              => "select2Parents",
-                "datatable_where"   => "class_id = $this->class_id",
+                "datatable_where"   => "id in($this->student_id)",
                 "required"          => true,
                 "datatable_ajax"    => false,
                 "datatable"         => "sdi_student,student_name",
@@ -64,22 +91,35 @@ class ReportAlquranController extends \mixtra\controllers\MITController
             ];
         }
 
-        // WAFA
+        // Kemandirian
         $this->form[] = ['name'=>'hr','type'=>'hr'];
-        $this->form[] = ['label'=>'WAFA','name'=>'wafa', 'icon' => '', 'type'=>'label','class'=>'title'];
-        $this->form[] = ['name'=>'hr','type'=>'hr'];
-        $this->form[] = array("label"=>"Jilid/Surah","name"=>"w_jilid");
-        $this->form[] = array("label"=>"Hal/Ayat","name"=>"w_hal");
-        $this->form[] = array("label"=>"Nilai","name"=>"w_nilai");
-        $this->form[] = array("label"=>"Lanjut/Ulang","name"=>"w_lu");
+        $this->form[] = ['label'=>'Kemandirian','name'=>'mandiri', 'icon' => 'fa fa-check-square', 'type'=>'label','class'=>'title'];
+        $this->form[] = ['label'=>'Bangun Pagi Mandi Dan Mengosok Gigi','name'=>'parents_bangun_pagi','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+        $this->form[] = ['label'=>'Melayani Diri Sendiri Saat Makan, Berpakaian dan Menyiapkan Perlengkapan Sekolah','name'=>'parents_mandiri','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
 
-        // Tahfids
+        // Cek Ibadah
         $this->form[] = ['name'=>'hr','type'=>'hr'];
-        $this->form[] = ['label'=>'TAHFIDZ','name'=>'wafa', 'icon' => '', 'type'=>'label','class'=>'title'];
+        $this->form[] = ['label'=>'Cek Ibadah Sholat','name'=>'ibadah', 'icon' => 'fa fa-graduation-cap', 'type'=>'label','class'=>'title'];
+        $this->form[] = ['label'=>'Subuh','name'=>'parents_subuh','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+        $this->form[] = ['label'=>'Dhuhur','name'=>'parents_dhuhur','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+        $this->form[] = ['label'=>'Ashar','name'=>'parents_ashar','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+        $this->form[] = ['label'=>'Magrib','name'=>'parents_magrib','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+        $this->form[] = ['label'=>'Isya','name'=>'parents_isya','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+
+//        $this->form[] = ['label'=>'Tahajud','name'=>'parents_tahajud','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+//        $this->form[] = ['label'=>'Tilawah','name'=>'parents_tilawah','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+
+        // Berbakti Kepada Orangtua
         $this->form[] = ['name'=>'hr','type'=>'hr'];
-        $this->form[] = array("label"=>"Al-qur'an Surah/Hadits/Do'a","name"=>"t_doa");
-        $this->form[] = array("label"=>"Hal/Ayat","name"=>"t_hal");
-        $this->form[] = array("label"=>"Nilai","name"=>"t_nilai");
+        $this->form[] = ['label'=>'Berbakti Kepada Orangtua','name'=>'berbakti', 'icon' => 'fa fa-child', 'type'=>'label','class'=>'title'];
+        $this->form[] = ['label'=>'Mendoakan Kedua Orang Tua','name'=>'parents_mendoakan','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+        $this->form[] = ['label'=>'Patuh Dan Berkata Dantun Pada Orang Tua','name'=>'parents_patuh','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+
+        // Info atau Response
+        $this->form[] = ['name'=>'hr','type'=>'hr'];
+        $this->form[] = ['label'=>'Informasi / Tanggapan','name'=>'berbakti', 'icon' => 'fa fa-info', 'type'=>'label','class'=>'title'];
+        $this->form[] = ['label'=>'Informasi Dari Guru/Orang Tua','name'=>'information','type'=>'wysiwyg'];
+        $this->form[] = ['label'=>'Tanggapan Dari Orang Tua/Guru','name'=>'response','type'=>'wysiwyg'];
 
 
         /*
@@ -109,6 +149,9 @@ class ReportAlquranController extends \mixtra\controllers\MITController
         |
         */
         $this->addaction = array();
+        if ( MITBooster::myPrivilegeId() == 4 ) {
+            $this->addaction[] = ['label'=>'ACC','url'=>MITBooster::mainpath('set-status/[id]'),'icon'=>'fa fa-check','color'=>'warning','showIf'=>"[parents_status] == '2'", 'confirmation' => true];
+        }
 
 
         /*
@@ -123,7 +166,7 @@ class ReportAlquranController extends \mixtra\controllers\MITController
         */
         $this->button_selected = array();
 
-                
+
         /*
         | ----------------------------------------------------------------------
         | Add alert message to this module at overheader
@@ -133,9 +176,10 @@ class ReportAlquranController extends \mixtra\controllers\MITController
         |
         */
         $this->alert        = array();
-                
+        $this->alert[]      = ['message'=>'Perhatian Jika Tombol ACC Muncul Maka Orangtua Belum Memberikan ACC pada laporan Mingguan.<br/>Response diisikan 1 kali setiap Minggu, Warna Hijau Berarti sudah ada isinya, warnah biru masih kosong<br/>Data yang ditampilkan adalah data seminggu terakhir, Untuk melihat data semuanya masuk menu report<br/>Untuk menambahkan data harap melihat daftar jika data sudah ada tinggal edit saja','type'=>'warning', 'title' => 'Perhatian !'];
 
-        
+
+
         /*
         | ----------------------------------------------------------------------
         | Add more button to header button
@@ -159,7 +203,7 @@ class ReportAlquranController extends \mixtra\controllers\MITController
         */
         $this->table_row_color = array();
 
-        
+
         /*
         | ----------------------------------------------------------------------
         | You may use this bellow array to add statistic at dashboard
@@ -180,7 +224,36 @@ class ReportAlquranController extends \mixtra\controllers\MITController
         |
         */
         // $this->script_js = null;
-        $this->script_js = "";
+        $this->script_js = "
+        $('#form-group-parents_tahajud').attr('style','display:none');
+        $('#form-group-parents_tilawah').attr('style','display:none');
+        cekClass();
+
+        $('#student_id').change(function(){
+            cekClass();    
+        });
+
+        function cekClass(){
+            var student_id = $('#student_id').val();
+            $.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name=\'csrf-token\']').attr('content')},
+                url: '" . MITBooster::mainpath('student-class') . "',
+                type: 'POST',
+                dataType: 'JSON',
+                data: {'id' : student_id},
+                success:function(data){
+                    console.log(data.class_grade)
+                    kelas = data.class_grade;
+                    if (kelas !== undefined) {
+                        if (kelas == 5 || kelas == 6){
+                            $('#form-group-parents_tahajud').attr('style','display:flex');
+                            $('#form-group-parents_tilawah').attr('style','display:flex');
+                        }
+                    }
+                }
+            });
+        }
+        ";
 
 
         /*
@@ -192,9 +265,9 @@ class ReportAlquranController extends \mixtra\controllers\MITController
         |
         */
         $this->pre_index_html = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include HTML Code after index table
@@ -204,9 +277,9 @@ class ReportAlquranController extends \mixtra\controllers\MITController
         |
         */
         $this->post_index_html = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include Javascript File
@@ -216,9 +289,9 @@ class ReportAlquranController extends \mixtra\controllers\MITController
         |
         */
         $this->load_js = array();
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Add css style at body
@@ -228,9 +301,9 @@ class ReportAlquranController extends \mixtra\controllers\MITController
         |
         */
         $this->style_css = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include css File
@@ -265,6 +338,13 @@ class ReportAlquranController extends \mixtra\controllers\MITController
     */
     public function hook_query_index(&$query)
     {
+        if ( MITBooster::myPrivilegeId() == 4 ) {
+            $start      = \Carbon\Carbon::now()->startOfWeek();
+            $end        = \Carbon\Carbon::now()->endOfWeek();
+            $this->student_id = explode(',',$this->student_id);
+            $query->whereIn('sdi_weekly_report.student_id', $this->student_id);
+            $query->whereBetween('sdi_weekly_report.created_at', [$start,$end]);
+        }
     }
 
     /*
@@ -287,6 +367,15 @@ class ReportAlquranController extends \mixtra\controllers\MITController
     */
     public function hook_before_add(&$postdata)
     {
+        $start  = \Carbon\Carbon::now()->startOfWeek();
+        $end    = \Carbon\Carbon::now()->endOfWeek();
+        $data   = DB::table('sdi_weekly_report')
+                  ->whereBetween('created_at', [$start, $end])
+                  ->where('student_id', $postdata['student_id'])
+                  ->first();
+        if(!empty($data)){
+            MITBooster::redirect(MITBooster::mainpath("edit/{$data->id}"), trans('mixtra.data_available'), 'info');
+        }
     }
 
     /*
@@ -347,5 +436,19 @@ class ReportAlquranController extends \mixtra\controllers\MITController
     public function hook_after_delete($id)
     {
         //Your code here
+    }
+    public function getSetStatus($id) {
+        DB::table('sdi_weekly_report')->where('id',$id)->update(['parents_status'=> '1']);
+        MITBooster::redirect($_SERVER['HTTP_REFERER'], trans("mixtra.report_accepted"),"info");
+    }
+
+    public function postStudentClass(){
+        $id = Request::get('id');
+        $data = DB::table('sdi_student as A')
+        ->select('B.class_grade')
+        ->join('sdi_class as B', 'B.id', 'A.class_id')
+        ->where('A.id', $id)
+        ->first();
+        return response()->json($data);
     }
 }

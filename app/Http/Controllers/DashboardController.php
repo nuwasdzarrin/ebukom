@@ -14,22 +14,23 @@ class DashboardController extends \mixtra\controllers\MITController
     {
         $this->data = [];
         $this->data['page_title'] = "Dashboard";
-        $this->table        = 'mit_shortcut';
-        $this->result = DB::table($this->table)
-        						->join('mit_menus', 'mit_menus.id', $this->table . '.path')
-        						->where('privileges_id', MITBooster::myPrivilegeId())
-        						->get();
-
-       	foreach ( $this->result AS $key => $val ):
-       		$this->shortcut[] = [
-       			'path'			=> route($val->path),
-       			'shortcut_name'	=> $val->shortcut_name,
-       			'icon'			=> $val->icon,
-       			'bgcolor'		=> $val->bgcolor,
-       			'description'	=> $val->description,
-       		];
-       	endforeach;
-       	$this->data['shortcut'] = $this->shortcut;
+//        $this->table        = 'mit_shortcut';
+//        $shortcut= [];
+//        $this->result = DB::table($this->table)
+//        						->join('mit_menus', 'mit_menus.id', $this->table . '.path')
+//        						->where('privileges_id', MITBooster::myPrivilegeId())
+//        						->get();
+//
+//       	foreach ( $this->result AS $key => $val ):
+//       		$shortcut = [
+//       			'path'			=> route($val->path),
+//       			'shortcut_name'	=> $val->shortcut_name,
+//       			'icon'			=> $val->icon,
+//       			'bgcolor'		=> $val->bgcolor,
+//       			'description'	=> $val->description,
+//       		];
+//       	endforeach;
+//       	$this->data['shortcut'] = $shortcut;
 
        	$this->data['role'] = '';
 

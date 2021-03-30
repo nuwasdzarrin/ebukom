@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//used by prev parent
 use Request;
 use Illuminate\Support\Facades\Validator;
 use DB;
 use MITBooster;
 
-class ParentsReadReport extends \mixtra\controllers\MITController
+class ParentReadController extends \mixtra\controllers\MITController
 {
     public function init() {
 
@@ -129,127 +129,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         $pane[] = ['label'=>'ahad','name'=>'total_ahad','type'=>'number', 'readonly' => true,'width'=>'col-md-8','label_width'=>'col-md-4'];
         $groups[] = ['name'=>'md', 'width'=>'col-sm-2','pane'=>$pane];
 
-        // $this->form[] = ['name'=>'hr','type'=>'hr'];
-        // $this->form[] = ['label'=>'Komik/Cerpen/Buku Cerita','name'=>'komik', 'icon' => 'fa fa-newspaper-o', 'type'=>'label','class'=>'title'];
-        // $this->form[] = ['name'=>'hr','type'=>'hr'];
-
-        // $groups = [];
-        // $pane = [];
-        // $pane[] = ['label'=>'Senin','name'=>'senin_komik','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Selasa','name'=>'selasa_komik','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Rabu','name'=>'rabu_komik','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Kamis','name'=>'kamis_komik','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Jumat','name'=>'jumat_komik','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Sabtu','name'=>'sabtu_komik','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Ahad','name'=>'ahad_komik','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $this->form[] = ['name'=>'row_2','type'=>'group','groups'=>$groups];
-
-        // Komik/Cerpen/Buku Cerita
-
-        // $this->form[] = ['name'=>'hr','type'=>'hr'];
-        // $this->form[] = ['label'=>'Buku Pelajaran','name'=>'pelajaran', 'icon' => 'fa fa-book', 'type'=>'label','class'=>'title'];
-        // $this->form[] = ['name'=>'hr','type'=>'hr'];
-
-        // $groups = [];
-        // $pane = [];
-        // $pane[] = ['label'=>'Senin','name'=>'senin_pelajaran','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Selasa','name'=>'selasa_pelajaran','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Rabu','name'=>'rabu_pelajaran','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Kamis','name'=>'kamis_pelajaran','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Jumat','name'=>'jumat_pelajaran','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Sabtu','name'=>'sabtu_pelajaran','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Ahad','name'=>'ahad_pelajaran','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $this->form[] = ['name'=>'row_2','type'=>'group','groups'=>$groups];
-
-        // Buku Lainya Jika Ada
-
-        // $this->form[] = ['name'=>'hr','type'=>'hr'];
-        // $this->form[] = ['label'=>'Buku Lainya Jika Ada','name'=>'wafa', 'icon' => 'fa fa-book', 'type'=>'label','class'=>'title'];
-        // $this->form[] = ['name'=>'hr','type'=>'hr'];
-
-        // $groups = [];
-        // $pane = [];
-        // $pane[] = ['label'=>'Senin','name'=>'senin_other','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Selasa','name'=>'selasa_other','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Rabu','name'=>'rabu_other','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Kamis','name'=>'kamis_other','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Jumat','name'=>'jumat_other','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Sabtu','name'=>'sabtu_other','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
-        // $pane = [];
-        // $pane[] = ['label'=>'Ahad','name'=>'ahad_other','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
-        // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-
         $this->form[] = ['name'=>'membaca_buku','type'=>'group','groups'=>$groups];
-
-        // Total Semua
-        // $this->form[] = ['name'=>'hr','type'=>'hr'];
-        // $this->form[] = ['label'=>'Total Halaman Buku Dibaca / Hari','name'=>'wafa', 'icon' => 'fa fa-calculator', 'type'=>'label','class'=>'title'];
-        // $this->form[] = ['name'=>'hr','type'=>'hr'];
-
-        // $this->form[] = ['label'=>'Senin','name'=>'total_senin','type'=>'text', 'readonly' => true,'width'=>'col-md-2','label_width'=>'col-md-1'];
-        // $this->form[] = ['label'=>'Selasa','name'=>'total_selasa','type'=>'text', 'readonly' => true,'width'=>'col-md-2','label_width'=>'col-md-1'];
-        // $this->form[] = ['label'=>'Rabu','name'=>'total_rabu','type'=>'text', 'readonly' => true,'width'=>'col-md-2','label_width'=>'col-md-1'];
-        // $this->form[] = ['label'=>'Kamis','name'=>'total_kamis','type'=>'text', 'readonly' => true,'width'=>'col-md-2','label_width'=>'col-md-1'];
-        // $this->form[] = ['label'=>'Jumat','name'=>'total_jumat','type'=>'text', 'readonly' => true,'width'=>'col-md-2','label_width'=>'col-md-1'];
-        // $this->form[] = ['label'=>'Sabtu','name'=>'total_sabtu','type'=>'text', 'readonly' => true,'width'=>'col-md-2','label_width'=>'col-md-1'];
-        // $this->form[] = ['label'=>'ahad','name'=>'total_ahad','type'=>'text', 'readonly' => true,'width'=>'col-md-2','label_width'=>'col-md-1'];
 
         /*
         | ----------------------------------------------------------------------

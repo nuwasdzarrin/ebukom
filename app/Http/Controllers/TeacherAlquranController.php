@@ -1,5 +1,5 @@
 <?php
-
+//used by prev teacher
 namespace App\Http\Controllers;
 
 use Request;
@@ -7,42 +7,84 @@ use Illuminate\Support\Facades\Validator;
 use DB;
 use MITBooster;
 
-class ReportWeeklyAlquran extends \mixtra\controllers\MITController
+class TeacherAlquranController extends \mixtra\controllers\MITController
 {
     public function init() {
-    	$this->table               = 'sdi_quran_report';
+
+        # START CONFIGURATION DO NOT REMOVE THIS LINE
+        $this->table               = 'sdi_quran_report';
         $this->orderby             = "created_at,DESC";
+        $this->primary_key         = 'id';
+        $this->title_field         = "id";
         $this->button_action_style = 'button_icon';
-        $this->button_action_width = '50px';
-        $this->show_numbering      = true;
-        $this->button_import       = false;
-        $this->button_export       = true;
-        $this->button_bulk_action  = false;
-        $this->button_add          = false;
-        $this->button_edit         = false;
-        $this->button_show         = true;
-        $this->button_delete       = false;
-        $this->button_detail       = false;
-        $this->button_table_action = false;
+        $this->button_import       = FALSE;
+        $this->button_export       = FALSE;
+        # END CONFIGURATION DO NOT REMOVE THIS LINE
+        $this->class_id            = DB::table('sdi_class')->where('class_wali_id', MITBooster::myId())->first()->id;
         $this->student_id          = json_decode(DB::table('mit_users')->where('id', MITBooster::myId())->first()->student_id, true);
-        #Column
+
+        # START COLUMNS DO NOT REMOVE THIS LINE
         $this->col = array();
         $this->col[] = array("label"=>"Hari, Tanggal","name"=>"created_at", "callback"=> function($row){
             $date = \Carbon\Carbon::parse($row->created_at);
             return $date->format('l, d-m-Y');
         });
         $this->col[] = array("label"=>"Siswa","name"=>"student_id", 'join'=>'sdi_student,student_name');
-        $this->col[] = array("label"=>"Siswa","name"=>"student_id", 'join'=>'sdi_student,student_name');
         $this->col[] = array("label"=>"Jilid/Surah","name"=>"w_jilid");
         $this->col[] = array("label"=>"Hal/Ayat","name"=>"w_hal");
-        $this->col[] = array("label"=>"Value","name"=>"w_nilai");
+        $this->col[] = array("label"=>"Nilai","name"=>"w_nilai");
         $this->col[] = array("label"=>"Lanjut/Ulang","name"=>"w_lu");
         $this->col[] = array("label"=>"Al-Qur'an Surah/Hadits/Do'a","name"=>"t_doa");
         $this->col[] = array("label"=>"Hal/Ayat","name"=>"t_hal");
-        $this->col[] = array("label"=>"Value","name"=>"t_nilai");
-   
+        $this->col[] = array("label"=>"Nilai","name"=>"t_nilai");
+        # END COLUMNS DO NOT REMOVE THIS LINE
 
-   /*
+        # START FORM DO NOT REMOVE THIS LINE
+        $this->form = array();
+        if ( MITBooster::myPrivilegeId() == 2 ) {
+             $this->form[] = [
+                "label"             => "Nama Siswa",
+                "name"              => "student_id",
+                "type"              => "select2Parents",
+                "datatable_where"   => "class_id = $this->class_id",
+                "required"          => true,
+                "datatable_ajax"    => false,
+                "datatable"         => "sdi_student,student_name",
+                "datatable_format"  => "nis,' - ',student_name",
+                "help"              => "Select Students",
+            ];
+        } else {
+            $this->form[] = [
+                "label"             => "Nama Siswa",
+                "name"              => "student_id",
+                "type"              => "select2",
+                "datatable_ajax"    => true,
+                "required"          => true,
+                "datatable"         => "sdi_student,student_name",
+                "datatable_format"  => "nis,' - ',student_name",
+                "help"              => "Select Student",
+            ];
+        }
+
+        // WAFA
+        $this->form[] = ['name'=>'hr','type'=>'hr'];
+        $this->form[] = ['label'=>'WAFA','name'=>'wafa', 'icon' => '', 'type'=>'label','class'=>'title'];
+        $this->form[] = ['name'=>'hr','type'=>'hr'];
+        $this->form[] = array("label"=>"Jilid/Surah","name"=>"w_jilid");
+        $this->form[] = array("label"=>"Hal/Ayat","name"=>"w_hal");
+        $this->form[] = array("label"=>"Nilai","name"=>"w_nilai");
+        $this->form[] = array("label"=>"Lanjut/Ulang","name"=>"w_lu");
+
+        // Tahfids
+        $this->form[] = ['name'=>'hr','type'=>'hr'];
+        $this->form[] = ['label'=>'TAHFIDZ','name'=>'wafa', 'icon' => '', 'type'=>'label','class'=>'title'];
+        $this->form[] = ['name'=>'hr','type'=>'hr'];
+        $this->form[] = array("label"=>"Al-qur'an Surah/Hadits/Do'a","name"=>"t_doa");
+        $this->form[] = array("label"=>"Hal/Ayat","name"=>"t_hal");
+        $this->form[] = array("label"=>"Nilai","name"=>"t_nilai");
+
+
+        /*
         | ----------------------------------------------------------------------
         | Sub Module
         | ----------------------------------------------------------------------
@@ -55,7 +97,6 @@ class ReportWeeklyAlquran extends \mixtra\controllers\MITController
         |
         */
         $this->sub_module = array();
-
 
 
         /*
@@ -84,7 +125,7 @@ class ReportWeeklyAlquran extends \mixtra\controllers\MITController
         */
         $this->button_selected = array();
 
-                
+
         /*
         | ----------------------------------------------------------------------
         | Add alert message to this module at overheader
@@ -94,9 +135,9 @@ class ReportWeeklyAlquran extends \mixtra\controllers\MITController
         |
         */
         $this->alert        = array();
-                
 
-        
+
+
         /*
         | ----------------------------------------------------------------------
         | Add more button to header button
@@ -120,7 +161,7 @@ class ReportWeeklyAlquran extends \mixtra\controllers\MITController
         */
         $this->table_row_color = array();
 
-        
+
         /*
         | ----------------------------------------------------------------------
         | You may use this bellow array to add statistic at dashboard
@@ -153,9 +194,9 @@ class ReportWeeklyAlquran extends \mixtra\controllers\MITController
         |
         */
         $this->pre_index_html = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include HTML Code after index table
@@ -165,9 +206,9 @@ class ReportWeeklyAlquran extends \mixtra\controllers\MITController
         |
         */
         $this->post_index_html = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include Javascript File
@@ -177,9 +218,9 @@ class ReportWeeklyAlquran extends \mixtra\controllers\MITController
         |
         */
         $this->load_js = array();
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Add css style at body
@@ -189,9 +230,9 @@ class ReportWeeklyAlquran extends \mixtra\controllers\MITController
         |
         */
         $this->style_css = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include css File
@@ -226,15 +267,13 @@ class ReportWeeklyAlquran extends \mixtra\controllers\MITController
     */
     public function hook_query_index(&$query)
     {
-        //dd($this->student_id);
         if ( MITBooster::myPrivilegeId() == 4 ) {
-            //$this->student_id = explode(',',$this->student_id);
             $query->whereIn('student_id', $this->student_id);
         } elseif( MITBooster::myPrivilegeId() == 2 ){
             $class      = DB::table('sdi_class')->where('class_wali_id', MITBooster::myId())->first();
             $student    = DB::table('sdi_student')->where('class_id', $class->id)->get();
             foreach ($student as $key) {
-                $student_id[] = $key->id; 
+                $student_id[] = $key->id;
             }
             $query->whereIn('student_id', $student_id);
         }

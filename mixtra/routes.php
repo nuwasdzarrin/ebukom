@@ -72,15 +72,19 @@ Route::group([
         }
     }
 
-
-//    Penyakitan
+//    update for handling soft delete with where null deleted_at
     try {
-        $modules = DB::table('mit_modules')->where('path', '!=', '')->where('controller', '!=', '')->where('is_protected', 0)->get();
+        $modules = DB::table('mit_modules')
+            ->where('path', '!=', '')
+            ->where('controller', '!=', '')
+            ->where('is_protected', 0)
+            ->whereNull('deleted_at')
+            ->get();
         foreach ($modules as $v) {
             MITBooster::routeController($v->path, $v->controller);
         }
     } catch (Exception $e) {
-
+        throw $e;
     }
 });
 

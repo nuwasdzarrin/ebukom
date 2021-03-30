@@ -37,7 +37,7 @@
 							<div class="card card-border bg-light">
 								<div class="card-body">
 									<div class="card-img-icon">
-										<i class="fa fa-star"></i>
+										<i class="fa fa-address-card"></i>
 									</div>
 									<h4 class="card-title" style="margin-bottom: 0;">Ibadah dan Akhlak</h4>
 								</div>
@@ -47,8 +47,8 @@
 									<li class="list-group-item">Berbakti Kepada Orang Tua</li>
 								</ul>
 								<div class="card-body text-right">
-									<a href="{{ route('ParentsReportControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
-									<a href="{{ route('ParentsReportControllerGetAdd') }}?return_url={{ route('ParentsReportControllerGetIndex') }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Isi Laporan</a>
+									<a href="{{ route('ParentReportControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
+									<a href="{{ route('ParentReportControllerGetAdd') }}?return_url={{ route('ParentReportControllerGetIndex') }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Isi Laporan</a>
 								</div>
 							</div>
 						</div>
@@ -66,8 +66,8 @@
 									<li class="list-group-item">Buku Lainnya</li>
 								</ul>
 								<div class="card-body text-right">
-									<a href="{{ route('ParentsReadReportGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
-									<a href="{{ route('ParentsReadReportGetAdd') }}?return_url={{ route('ParentsReadReportGetIndex') }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Isi Laporan</a>
+									<a href="{{ route('ParentReadControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
+									<a href="{{ route('ParentReadControllerGetAdd') }}?return_url={{ route('ParentReadControllerGetIndex') }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Isi Laporan</a>
 								</div>
 							</div>
 						</div>
@@ -90,7 +90,7 @@
 							<div class="card card-border bg-light">
 								<div class="card-body">
 									<div class="card-img-icon">
-										<i class="fa fa-star-o"></i>
+										<i class="fa fa-check-square-o"></i>
 									</div>
 									<h4 class="card-title" style="margin-bottom: 0;">Ibadah, Kedisiplinan, Akhlak</h4>
 								</div>
@@ -100,7 +100,7 @@
 									<li class="list-group-item">Ahlakul Karimah</li>
 								</ul>
 								<div class="card-body text-right">
-									<a href="{{ route('ReportWeeklyReportGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
+									<a href="{{ route('TeacherReportControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 								</div>
 							</div>
 						</div>
@@ -118,7 +118,7 @@
 									<li class="list-group-item">&nbsp;</li>
 								</ul>
 								<div class="card-body text-right">
-									<a href="{{ route('ReportWeeklyAlquranGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
+									<a href="{{ route('TeacherAlquranControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 								</div>
 							</div>
 						</div>
@@ -132,7 +132,7 @@
 		<div class="col-sm-12">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="font-weight-bolder"><i class="fa fa-home"></i> Laporan aktivitas siswa di rumah</h4>
+					<h4 class="font-weight-bolder"><i class="fa fa-university"></i> Laporan aktivitas siswa di sekolah</h4>
 					<div>*untuk diisi guru</div>
 				</div>
 				<div class="card-body">
@@ -141,7 +141,7 @@
 							<div class="card card-border bg-light">
 								<div class="card-body">
 									<div class="card-img-icon">
-										<i class="fa fa-star-o"></i>
+										<i class="fa fa-check-square-o"></i>
 									</div>
 									<h4 class="card-title" style="margin-bottom: 0;">Ibadah, Kedisiplinan, Akhlak</h4>
 								</div>
@@ -151,8 +151,8 @@
 									<li class="list-group-item">Ahlakul Karimah</li>
 								</ul>
 								<div class="card-body text-right">
-									<a href="{{ route('TeacherReportOneControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
-									<a href="{{ route('TeacherReportOneControllerGetAdd') }}?return_url={{ route('TeacherReportOneControllerGetIndex') }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Isi Laporan</a>
+									<a href="{{ route('TeacherReportControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
+									<a href="{{ route('TeacherReportControllerGetAdd') }}?return_url={{ route('TeacherReportControllerGetIndex') }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Isi Laporan</a>
 								</div>
 							</div>
 						</div>
@@ -170,8 +170,8 @@
 									<li class="list-group-item">&nbsp;</li>
 								</ul>
 								<div class="card-body text-right">
-									<a href="{{ route('ReportAlquranControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
-									<a href="{{ route('ReportAlquranControllerGetAdd') }}?return_url={{ route('ReportAlquranControllerGetIndex') }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Isi Laporan</a>
+									<a href="{{ route('TeacherAlquranControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
+									<a href="{{ route('TeacherAlquranControllerGetAdd') }}?return_url={{ route('TeacherAlquranControllerGetIndex') }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Isi Laporan</a>
 								</div>
 							</div>
 						</div>
@@ -185,7 +185,7 @@
 		<div class="col-sm-12">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="font-weight-bolder"><i class="fa fa-university"></i> Laporan aktivitas siswa di sekolah</h4>
+					<h4 class="font-weight-bolder"><i class="fa fa-home"></i> Laporan aktivitas siswa di rumah</h4>
 					<div>*guru hanya dapat melihat</div>
 				</div>
 				<div class="card-body">
@@ -194,7 +194,7 @@
 							<div class="card card-border bg-light">
 								<div class="card-body">
 									<div class="card-img-icon">
-										<i class="fa fa-star"></i>
+										<i class="fa fa-address-card"></i>
 									</div>
 									<h4 class="card-title" style="margin-bottom: 0;">Ibadah dan Akhlak</h4>
 								</div>
@@ -204,7 +204,7 @@
 									<li class="list-group-item">Berbakti Kepada Orang Tua</li>
 								</ul>
 								<div class="card-body text-right">
-									<a href="{{ route('ReportWeeklyReportGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
+									<a href="{{ route('ParentReportControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 								</div>
 							</div>
 						</div>
@@ -222,7 +222,7 @@
 									<li class="list-group-item">Buku Lainnya</li>
 								</ul>
 								<div class="card-body text-right">
-									<a href="{{ route('ReportReadControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
+									<a href="{{ route('ParentReadControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
 								</div>
 							</div>
 						</div>
@@ -264,8 +264,8 @@
 									<h4 class="card-title text-center" style="margin-bottom: 0;">Orang Tua</h4>
 								</div>
 								<div class="card-body text-center">
-									<a href="{{ route('ParentsControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
-									<a href="{{ route('ParentsControllerGetAdd') }}?return_url={{ route('ParentsControllerGetIndex') }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Tambah Data</a>
+									<a href="{{ route('ParentControllerGetIndex') }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Lihat</a>
+									<a href="{{ route('ParentControllerGetAdd') }}?return_url={{ route('ParentControllerGetIndex') }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Tambah Data</a>
 								</div>
 							</div>
 						</div>

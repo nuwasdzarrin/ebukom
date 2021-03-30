@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace mixtra\controllers;
 
 use MITBooster;
@@ -42,7 +42,7 @@ class MenusController extends MITController
         $module_id = $statistic_id = 0;
 
         if ($row->type == 'Module') {
-            $m = MITBooster::first('mit_moduls', ['path' => $row->path]);
+            $m = MITBooster::first('mit_modules', ['path' => $row->path]);
             $module_id = $m->id;
         } elseif ($row->type == 'Statistic') {
             // $row->path = str_replace('statistic_builder/show/', '', $row->path);
