@@ -18,7 +18,8 @@
 
     @stack('head')
 </head>
-<body class="@php echo (Session::get('theme_color'))?:'skin-blue'; echo ' '; echo config('mixtra.ADMIN_LAYOUT'); @endphp @yield('body-class') ">
+{{--<body class="@php echo (Session::get('theme_color'))?:'skin-blue'; echo ' '; echo config('mixtra.ADMIN_LAYOUT'); @endphp @yield('body-class')">--}}
+<body class="skin-default @yield('body-class')">
 
 
 

@@ -3,17 +3,19 @@
 @section('content')
 
     <div style="width:750px;margin:0 auto ">
-
-
         @if(MITBooster::getCurrentMethod() != 'getProfile')
-            <p><a title='Main Module' href='{{MITBooster::mainpath()}}'><i class='fa fa-chevron-circle-left '></i>
-                    &nbsp; {{trans("mixtra.form_back_to_list",['module'=>MITBooster::getCurrentModule()->name])}}</a></p>
-    @endif
-    <!-- Box -->
-    <div class="card">
-        <div class="card-header">
-            <strong>{!! $page_title or "Page Title" !!}</strong>
-        </div>
+            <p>
+                <a title='Main Module' href='{{MITBooster::mainpath()}}'>
+                    <i class='fa fa-chevron-circle-left '></i>
+                    &nbsp; {{trans("mixtra.form_back_to_list",['module'=>MITBooster::getCurrentModule()->name])}}
+                </a>
+            </p>
+        @endif
+        <!-- Box -->
+        <div class="card">
+            <div class="card-header">
+                <strong>{!! $page_title or "Page Title" !!}</strong>
+            </div>
 
             <form method='post' action='{{ (@$row->id)?route("PrivilegesControllerPostEditSave")."/$row->id":route("PrivilegesControllerPostAddSave") }}'>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -167,17 +169,14 @@
                             @endforeach
                             </tbody>
                         </table>
-
                     </div>
-
                 </div><!-- /.box-body -->
                 <div class="card-footer" align="right">
                     <button type='button' onclick="location.href='{{MITBooster::mainpath()}}'"
                             class='btn btn-default'>{{trans("mixtra.button_cancel")}}</button>
                     <button type='submit' class='btn btn-primary'><i class='fa fa-save'></i> {{trans("mixtra.button_save")}}</button>
                 </div><!-- /.box-footer-->
+            </form>
         </div><!-- /.box -->
-    </form>
-
     </div><!-- /.row -->
 @endsection

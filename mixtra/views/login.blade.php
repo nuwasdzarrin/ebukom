@@ -7,6 +7,19 @@
 @section('admin_css')
 <link href="{{ asset('assets/css/pages/login-register-lock.css') }}" rel="stylesheet">
     <style>
+        .d-flex-custom {
+            display: flex;
+        }
+        .login-side-img {
+            width: 350px;
+            height: auto;
+        }
+        @media screen and (max-width: 769px) {
+            .login-side-img {
+                width: 250px;
+                height: auto;
+            }
+        }
         @media screen and (max-width: 426px) {
             .login-img-behind {
                 display: none;
@@ -27,13 +40,13 @@
 <section id="wrapper" class="login-register login-sidebar">
     <div class="row" style="height: 100%">
         <div class="col-md-8 login-img-behind">
-            <div class="d-flex justify-content-center align-items-center" style="height: 100%">
-                <img src="{{ MITBooster::getSetting('login_background_image')?asset(MITBooster::getSetting('login_background_image')):asset('assets/images/background/login-register.jpg') }}" style="width: 500px; height: auto;">
+            <div class="d-flex-custom justify-content-center align-items-center" style="height: 100%">
+                <img src="{{ MITBooster::getSetting('login_background_image')?asset(MITBooster::getSetting('login_background_image')):asset('assets/images/background/login-register.jpg') }}" class="login-side-img">
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
-            <div class="login-box card">
-                <div class="card-body" style="padding-top: 25%;">
+            <div class="login-box card" style="width: unset;">
+                <div class="card-body" style="padding-top: 30%;">
                     @if ( Session::get('message') != '' )
                         <div class='alert alert-warning'>
                             {{ Session::get('message') }}

@@ -31,7 +31,11 @@ class DashboardController extends \mixtra\controllers\MITController
        	endforeach;
        	$this->data['shortcut'] = $this->shortcut;
 
+       	$this->data['role'] = '';
+
         if (MITBooster::myPrivilegeId() == 4 || MITBooster::myPrivilegeId() == 2){
+            if (MITBooster::myPrivilegeId() == 2) $this->data['role'] = 'teacher';
+            else $this->data['role'] = 'parent';
         	return view("dashboard.summary", $this->data);
         }else{
         	return view("dashboard.parents", $this->data);

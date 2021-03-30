@@ -15,8 +15,45 @@
 
 .skin-default .topbar .top-navbar .navbar-header .navbar-brand .light-logo {
     display: inline-block;
-    color: rgba(255, 255, 255, 0.8)
+    color: #FFFFFF;
 }
+
+.skin-white {}
+
+.skin-white .topbar {
+    background: #FFFFFF;
+}
+
+.skin-white .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
+    display: none
+}
+
+.skin-white .topbar .top-navbar .navbar-header .navbar-brand .light-logo {
+    display: inline-block;
+    color: rgba(10, 10, 10, 0.8)
+}
+
+.skin-white .sidebar-nav ul li a.active, .skin-white .sidebar-nav ul li a:hover {
+    color: #666363;
+}
+
+.skin-white .sidebar-nav ul li a.active i, .skin-white .sidebar-nav ul li a:hover i {
+    color: #666363;
+}
+
+.skin-white .sidebar-nav > ul > li.active > a {
+    color: #666363;
+    border-left: 3px solid #666363;
+}
+
+.skin-white .sidebar-nav > ul > li.active > a i {
+    color: #666363;
+}
+
+.skin-white .page-titles .breadcrumb .breadcrumb-item.active {
+    color: #666363;
+}
+
 
 .skin-green {}
 
@@ -5599,15 +5636,15 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 .navbar-dark .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.5)
+    color: rgba(255, 255, 255, 1)
 }
 
 .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
-    color: rgba(255, 255, 255, 0.75)
+    color: rgba(255, 255, 255, 1)
 }
 
 .navbar-dark .navbar-nav .nav-link.disabled {
-    color: rgba(255, 255, 255, 0.25)
+    color: rgba(255, 255, 255, 0.5)
 }
 
 .navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.active,
@@ -5616,7 +5653,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 .navbar-dark .navbar-toggler {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 1);
     border-color: rgba(255, 255, 255, 0.1)
 }
 
@@ -5625,7 +5662,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 .navbar-dark .navbar-text {
-    color: rgba(255, 255, 255, 0.5)
+    color: rgba(255, 255, 255, 1)
 }
 
 .navbar-dark .navbar-text a {

@@ -10,23 +10,23 @@ use MITBooster;
 class ParentsReadReport extends \mixtra\controllers\MITController
 {
     public function init() {
-        
+
         # START CONFIGURATION DO NOT REMOVE THIS LINE
         $this->table               = 'sdi_reading_parents_weekly_report';
         $this->primary_key         = 'id';
         $this->title_field         = "id";
         $this->button_action_style = 'button_icon';
         $this->button_action_width = '150px';
-        $this->button_import       = FALSE; 
-        $this->button_export       = FALSE; 
+        $this->button_import       = FALSE;
+        $this->button_export       = FALSE;
         # END CONFIGURATION DO NOT REMOVE THIS LINE
         $this->student_id          = json_decode(DB::table('mit_users')->where('id', MITBooster::myId())->first()->student_id, true);
-    
+
         # START COLUMNS DO NOT REMOVE THIS LINE
         $this->col = [];
         $this->col[] = ["label"=>"Hari, Tanggal","name"=>"created_at", "callback"=> function($row){
             $date = \Carbon\Carbon::parse($row->created_at);
-            return 
+            return
             "Pekan Ke " . "<span class='ml-md-1 badge badge-info'>{$date->weekOfMonth}</span> "
             . "Bulan  <span class='ml-md-1 badge badge-success'>{$date->format('F')}</span>";
         }];
@@ -73,10 +73,10 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         }
         $this->form[] = ['name'=>'hr','type'=>'hr'];
 
-        // Komik/Novel/Cerpen/Buku Cerita
+        // Komik/Cerpen/Buku Cerita
         $pane = [];
         $groups = [];
-        $pane[] = ['label'=>'Komik/Novel/Cerpen/Buku Cerita','name'=>'komik', 'icon' => 'fa fa-newspaper-o', 'type'=>'label','class'=>'title'];
+        $pane[] = ['label'=>'Komik/Cerpen/Buku Cerita','name'=>'komik', 'icon' => 'fa fa-newspaper-o', 'type'=>'label','class'=>'title'];
         $pane[] = ['name'=>'hr','type'=>'hr'];
         $pane[] = ['label'=>'Senin','name'=>'senin_komik','type'=>'number','label_width'=>'col-md-4','width'=>'col-md-8'];
         $pane[] = ['label'=>'Selasa','name'=>'selasa_komik','type'=>'number','label_width'=>'col-md-4','width'=>'col-md-8'];
@@ -104,10 +104,10 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         $pane[] = ['name'=>'hr','type'=>'hr'];
         $pane[] = ['label'=>'Senin','name'=>'senin_other','type'=>'number','label_width'=>'col-md-4','width'=>'col-md-8'];
         $pane[] = ['label'=>'Selasa','name'=>'selasa_other','type'=>'number','label_width'=>'col-md-4','width'=>'col-md-8'];
-        $pane[] = ['label'=>'Rabu','name'=>'rabu_other','type'=>'number','label_width'=>'col-md-4','width'=>'col-md-8'];      
-        $pane[] = ['label'=>'Kamis','name'=>'kamis_other','type'=>'number','label_width'=>'col-md-4','width'=>'col-md-8'];        
-        $pane[] = ['label'=>'Jumat','name'=>'jumat_other','type'=>'number','label_width'=>'col-md-4','width'=>'col-md-8'];        
-        $pane[] = ['label'=>'Sabtu','name'=>'sabtu_other','type'=>'number','label_width'=>'col-md-4','width'=>'col-md-8'];        
+        $pane[] = ['label'=>'Rabu','name'=>'rabu_other','type'=>'number','label_width'=>'col-md-4','width'=>'col-md-8'];
+        $pane[] = ['label'=>'Kamis','name'=>'kamis_other','type'=>'number','label_width'=>'col-md-4','width'=>'col-md-8'];
+        $pane[] = ['label'=>'Jumat','name'=>'jumat_other','type'=>'number','label_width'=>'col-md-4','width'=>'col-md-8'];
+        $pane[] = ['label'=>'Sabtu','name'=>'sabtu_other','type'=>'number','label_width'=>'col-md-4','width'=>'col-md-8'];
         $pane[] = ['label'=>'Ahad','name'=>'ahad_other','type'=>'number','label_width'=>'col-md-4','width'=>'col-md-8'];
         $groups[] = ['name'=>'bl', 'width'=>'col-sm-2','pane'=>$pane];
 
@@ -116,7 +116,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         $pane[] = ['name'=>'hr','type'=>'hr'];
         $pane[] = ['label'=>'Menulis Diary','name'=>'diary','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
         $groups[] = ['name'=>'md', 'width'=>'col-sm-2','pane'=>$pane];
-        
+
         $pane = [];
         $pane[] = ['label'=>'Total Halaman Buku Dibaca / Hari','name'=>'wafa', 'icon' => 'fa fa-calculator', 'type'=>'label','class'=>'title'];
         $pane[] = ['name'=>'hr','type'=>'hr'];
@@ -130,18 +130,18 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         $groups[] = ['name'=>'md', 'width'=>'col-sm-2','pane'=>$pane];
 
         // $this->form[] = ['name'=>'hr','type'=>'hr'];
-        // $this->form[] = ['label'=>'Komik/Novel/Cerpen/Buku Cerita','name'=>'komik', 'icon' => 'fa fa-newspaper-o', 'type'=>'label','class'=>'title'];
+        // $this->form[] = ['label'=>'Komik/Cerpen/Buku Cerita','name'=>'komik', 'icon' => 'fa fa-newspaper-o', 'type'=>'label','class'=>'title'];
         // $this->form[] = ['name'=>'hr','type'=>'hr'];
 
         // $groups = [];
         // $pane = [];
         // $pane[] = ['label'=>'Senin','name'=>'senin_komik','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
         // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-        
+
         // $pane = [];
         // $pane[] = ['label'=>'Selasa','name'=>'selasa_komik','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
         // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-        
+
         // $pane = [];
         // $pane[] = ['label'=>'Rabu','name'=>'rabu_komik','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
         // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
@@ -164,7 +164,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
 
         // $this->form[] = ['name'=>'row_2','type'=>'group','groups'=>$groups];
 
-        // Komik/Novel/Cerpen/Buku Cerita
+        // Komik/Cerpen/Buku Cerita
 
         // $this->form[] = ['name'=>'hr','type'=>'hr'];
         // $this->form[] = ['label'=>'Buku Pelajaran','name'=>'pelajaran', 'icon' => 'fa fa-book', 'type'=>'label','class'=>'title'];
@@ -174,11 +174,11 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         // $pane = [];
         // $pane[] = ['label'=>'Senin','name'=>'senin_pelajaran','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
         // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-        
+
         // $pane = [];
         // $pane[] = ['label'=>'Selasa','name'=>'selasa_pelajaran','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
         // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-        
+
         // $pane = [];
         // $pane[] = ['label'=>'Rabu','name'=>'rabu_pelajaran','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
         // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
@@ -211,11 +211,11 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         // $pane = [];
         // $pane[] = ['label'=>'Senin','name'=>'senin_other','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
         // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-        
+
         // $pane = [];
         // $pane[] = ['label'=>'Selasa','name'=>'selasa_other','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
         // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
-        
+
         // $pane = [];
         // $pane[] = ['label'=>'Rabu','name'=>'rabu_other','type'=>'number','width'=>'col-md-6','label_width'=>'col-md-6'];
         // $groups[] = ['name'=>'col_senin','width'=>'col-md-2','pane'=>$pane];
@@ -293,7 +293,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         */
         $this->button_selected = array();
 
-                
+
         /*
         | ----------------------------------------------------------------------
         | Add alert message to this module at overheader
@@ -303,9 +303,9 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         |
         */
         $this->alert        = array();
-                
 
-        
+
+
         /*
         | ----------------------------------------------------------------------
         | Add more button to header button
@@ -329,7 +329,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         */
         $this->table_row_color = array();
 
-        
+
         /*
         | ----------------------------------------------------------------------
         | You may use this bellow array to add statistic at dashboard
@@ -519,9 +519,9 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         |
         */
         $this->pre_index_html = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include HTML Code after index table
@@ -531,9 +531,9 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         |
         */
         $this->post_index_html = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include Javascript File
@@ -543,9 +543,9 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         |
         */
         $this->load_js = array();
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Add css style at body
@@ -581,9 +581,9 @@ class ParentsReadReport extends \mixtra\controllers\MITController
         }
 
         ";
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include css File
@@ -625,7 +625,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
             $class      = DB::table('sdi_class')->where('class_wali_id', MITBooster::myId())->first();
             $student    = DB::table('sdi_student')->where('class_id', $class->id)->get();
             foreach ($student as $key) {
-                $student_id[] = $key->id; 
+                $student_id[] = $key->id;
             }
             $query->whereIn('student_id', $student_id);
         }
@@ -651,7 +651,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
     */
     public function hook_before_add(&$postdata)
     {
-        $postdata['komik'] = 
+        $postdata['komik'] =
             $postdata['senin_komik'] . ',' .
             $postdata['selasa_komik'] . ',' .
             $postdata['rabu_komik'] . ',' .
@@ -660,7 +660,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
             $postdata['sabtu_komik'] . ',' .
             $postdata['ahad_komik'];
 
-        $postdata['b_pelajaran'] = 
+        $postdata['b_pelajaran'] =
             $postdata['senin_pelajaran'] . ',' .
             $postdata['selasa_pelajaran'] . ',' .
             $postdata['rabu_pelajaran'] . ',' .
@@ -669,7 +669,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
             $postdata['sabtu_pelajaran'] . ',' .
             $postdata['ahad_pelajaran'];
 
-        $postdata['b_lainya'] = 
+        $postdata['b_lainya'] =
             $postdata['senin_other'] . ',' .
             $postdata['selasa_other'] . ',' .
             $postdata['rabu_other'] . ',' .
@@ -678,7 +678,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
             $postdata['sabtu_other'] . ',' .
             $postdata['ahad_other'];
 
-        $postdata['total_perday'] = 
+        $postdata['total_perday'] =
             $postdata['total_senin'] . ',' .
             $postdata['total_selasa'] . ',' .
             $postdata['total_rabu'] . ',' .
@@ -746,7 +746,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
     */
     public function hook_before_edit(&$postdata, $id)
     {
-        $postdata['komik'] = 
+        $postdata['komik'] =
             $postdata['senin_komik'] . ',' .
             $postdata['selasa_komik'] . ',' .
             $postdata['rabu_komik'] . ',' .
@@ -755,7 +755,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
             $postdata['sabtu_komik'] . ',' .
             $postdata['ahad_komik'];
 
-        $postdata['b_pelajaran'] = 
+        $postdata['b_pelajaran'] =
             $postdata['senin_pelajaran'] . ',' .
             $postdata['selasa_pelajaran'] . ',' .
             $postdata['rabu_pelajaran'] . ',' .
@@ -764,7 +764,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
             $postdata['sabtu_pelajaran'] . ',' .
             $postdata['ahad_pelajaran'];
 
-        $postdata['b_lainya'] = 
+        $postdata['b_lainya'] =
             $postdata['senin_other'] . ',' .
             $postdata['selasa_other'] . ',' .
             $postdata['rabu_other'] . ',' .
@@ -773,7 +773,7 @@ class ParentsReadReport extends \mixtra\controllers\MITController
             $postdata['sabtu_other'] . ',' .
             $postdata['ahad_other'];
 
-        $postdata['total_perday'] = 
+        $postdata['total_perday'] =
             $postdata['total_senin'] . ',' .
             $postdata['total_selasa'] . ',' .
             $postdata['total_rabu'] . ',' .

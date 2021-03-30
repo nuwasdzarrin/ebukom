@@ -45,31 +45,31 @@ class FileController extends Controller
         $images_ext = explode(',', $images_ext);
         $imageFileSize = 0;
 
-        if (in_array($extension, $images_ext)) {
-            $defaultThumbnail = config('crudbooster.DEFAULT_THUMBNAIL_WIDTH');
-            if ($defaultThumbnail != 0) {
-                $w = Request::get('w') ?: $defaultThumbnail;
-                $h = Request::get('h') ?: $w;
-            } else {
-                $w = Request::get('w');
-                $h = Request::get('h') ?: $w;
-            }
+        // if (in_array($extension, $images_ext)) {
+        //     $defaultThumbnail = config('crudbooster.DEFAULT_THUMBNAIL_WIDTH');
+        //     if ($defaultThumbnail != 0) {
+        //         $w = Request::get('w') ?: $defaultThumbnail;
+        //         $h = Request::get('h') ?: $w;
+        //     } else {
+        //         $w = Request::get('w');
+        //         $h = Request::get('h') ?: $w;
+        //     }
 
-            $imgRaw = Image::cache(function ($image) use ($fullStoragePath, $w, $h) {
-                $im = $image->make($fullStoragePath);
-                if ($w) {
-                    if (! $h) {
-                        $im->fit($w);
-                    } else {
-                        $im->fit($w, $h);
-                    }
-                }
+        //     $imgRaw = Image::cache(function ($image) use ($fullStoragePath, $w, $h) {
+        //         $im = $image->make($fullStoragePath);
+        //         if ($w) {
+        //             if (! $h) {
+        //                 $im->fit($w);
+        //             } else {
+        //                 $im->fit($w, $h);
+        //             }
+        //         }
 
-                return $im;
-            });
+        //         return $im;
+        //     });
 
-            $imageFileSize = mb_strlen($imgRaw, '8bit') ?: 0;
-        }
+        //     $imageFileSize = mb_strlen($imgRaw, '8bit') ?: 0;
+        // }
 
         /**
          * Prepare some header variables
@@ -101,18 +101,20 @@ class FileController extends Controller
             'Content-Length' => $header_content_length,
         ]);
 
-        if (in_array($extension, $images_ext)) {
-            if ($h1 || $h2) {
-                return Response::make('', 304, $headers); // File (image) is cached by the browser, so we don't have to send it again
-            } else {
-                return Response::make($imgRaw, 200, $headers);
-            }
+        if (Request::get('download')) {
+            return Response::download(storage_path('app/'.$fullFilePath), $filename, $headers);
         } else {
-            if (Request::get('download')) {
-                return Response::download(storage_path('app/'.$fullFilePath), $filename, $headers);
-            } else {
-                return Response::file(storage_path('app/'.$fullFilePath), $headers);
-            }
+            return Response::file(storage_path('app/'.$fullFilePath), $headers);
         }
+
+        // if (in_array($extension, $images_ext)) {
+        //     if ($h1 || $h2) {
+        //         return Response::make('', 304, $headers); // File (image) is cached by the browser, so we don't have to send it again
+        //     } else {
+        //         return Response::make($imgRaw, 200, $headers);
+        //     }
+        // } else {
+
+        // }
     }
 }

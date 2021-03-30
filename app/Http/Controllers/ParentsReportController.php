@@ -10,23 +10,23 @@ use MITBooster;
 class ParentsReportController extends \mixtra\controllers\MITController
 {
     public function init() {
-        
+
         # START CONFIGURATION DO NOT REMOVE THIS LINE
         $this->table               = 'sdi_weekly_report';
         $this->primary_key         = 'id';
         $this->title_field         = "student_id";
         $this->button_action_style = 'button_icon';
         $this->button_action_width = '150px';
-        $this->button_import       = FALSE; 
-        $this->button_export       = FALSE; 
+        $this->button_import       = FALSE;
+        $this->button_export       = FALSE;
         # END CONFIGURATION DO NOT REMOVE THIS LINE
         $this->student_id          = json_decode(DB::table('mit_users')->where('id', MITBooster::myId())->first()->student_id, true);
-    
+
         # START COLUMNS DO NOT REMOVE THIS LINE
         $this->col = array();
         $this->col[] = array("label"=>"Hari, Tanggal","name"=>"created_at", "callback"=> function($row){
             $date = \Carbon\Carbon::parse($row->created_at);
-            return 
+            return
             "Pekan Ke " . "<span class='ml-md-1 badge badge-info'>{$date->weekOfMonth}</span> "
             . "Bulan  <span class='ml-md-1 badge badge-success'>{$date->format('F')}</span>";
         });
@@ -94,25 +94,25 @@ class ParentsReportController extends \mixtra\controllers\MITController
         // Kemandirian
         $this->form[] = ['name'=>'hr','type'=>'hr'];
         $this->form[] = ['label'=>'Kemandirian','name'=>'mandiri', 'icon' => 'fa fa-check-square', 'type'=>'label','class'=>'title'];
-        $this->form[] = ['label'=>'Bangun Pagi Mandi Dan Mengosok Gigi','name'=>'parents_bangun_pagi','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id']; 
-        $this->form[] = ['label'=>'Melayani Diri Sendiri Saat Makan, Berpakaian dan Menyiapkan Perlengkapan Sekolah','name'=>'parents_mandiri','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id']; 
-        
+        $this->form[] = ['label'=>'Bangun Pagi Mandi Dan Mengosok Gigi','name'=>'parents_bangun_pagi','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+        $this->form[] = ['label'=>'Melayani Diri Sendiri Saat Makan, Berpakaian dan Menyiapkan Perlengkapan Sekolah','name'=>'parents_mandiri','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+
         // Cek Ibadah
         $this->form[] = ['name'=>'hr','type'=>'hr'];
         $this->form[] = ['label'=>'Cek Ibadah Sholat','name'=>'ibadah', 'icon' => 'fa fa-graduation-cap', 'type'=>'label','class'=>'title'];
-        $this->form[] = ['label'=>'Subuh','name'=>'parents_subuh','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id']; 
-        $this->form[] = ['label'=>'Dhuhur','name'=>'parents_dhuhur','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id']; 
-        $this->form[] = ['label'=>'Ashar','name'=>'parents_ashar','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id']; 
-        $this->form[] = ['label'=>'Magrib','name'=>'parents_magrib','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id']; 
-        $this->form[] = ['label'=>'Isya','name'=>'parents_isya','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id']; 
+        $this->form[] = ['label'=>'Subuh','name'=>'parents_subuh','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+        $this->form[] = ['label'=>'Dhuhur','name'=>'parents_dhuhur','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+        $this->form[] = ['label'=>'Ashar','name'=>'parents_ashar','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+        $this->form[] = ['label'=>'Magrib','name'=>'parents_magrib','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+        $this->form[] = ['label'=>'Isya','name'=>'parents_isya','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
 
-        $this->form[] = ['label'=>'Tahajud','name'=>'parents_tahajud','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id']; 
-        $this->form[] = ['label'=>'Tilawah','name'=>'parents_tilawah','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id']; 
+//        $this->form[] = ['label'=>'Tahajud','name'=>'parents_tahajud','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
+//        $this->form[] = ['label'=>'Tilawah','name'=>'parents_tilawah','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
 
         // Berbakti Kepada Orangtua
         $this->form[] = ['name'=>'hr','type'=>'hr'];
         $this->form[] = ['label'=>'Berbakti Kepada Orangtua','name'=>'berbakti', 'icon' => 'fa fa-child', 'type'=>'label','class'=>'title'];
-        $this->form[] = ['label'=>'Mendoakan Kedua Orang Tua','name'=>'parents_mendoakan','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id']; 
+        $this->form[] = ['label'=>'Mendoakan Kedua Orang Tua','name'=>'parents_mendoakan','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
         $this->form[] = ['label'=>'Patuh Dan Berkata Dantun Pada Orang Tua','name'=>'parents_patuh','required'=>false,'type'=>'checkbox','datatable'=>'sdi_day_of_week_parents,day_name', 'orderby' => 'id'];
 
         // Info atau Response
@@ -166,7 +166,7 @@ class ParentsReportController extends \mixtra\controllers\MITController
         */
         $this->button_selected = array();
 
-                
+
         /*
         | ----------------------------------------------------------------------
         | Add alert message to this module at overheader
@@ -177,9 +177,9 @@ class ParentsReportController extends \mixtra\controllers\MITController
         */
         $this->alert        = array();
         $this->alert[]      = ['message'=>'Perhatian Jika Tombol ACC Muncul Maka Orangtua Belum Memberikan ACC pada laporan Mingguan.<br/>Response diisikan 1 kali setiap Minggu, Warna Hijau Berarti sudah ada isinya, warnah biru masih kosong<br/>Data yang ditampilkan adalah data seminggu terakhir, Untuk melihat data semuanya masuk menu report<br/>Untuk menambahkan data harap melihat daftar jika data sudah ada tinggal edit saja','type'=>'warning', 'title' => 'Perhatian !'];
-                
 
-        
+
+
         /*
         | ----------------------------------------------------------------------
         | Add more button to header button
@@ -203,7 +203,7 @@ class ParentsReportController extends \mixtra\controllers\MITController
         */
         $this->table_row_color = array();
 
-        
+
         /*
         | ----------------------------------------------------------------------
         | You may use this bellow array to add statistic at dashboard
@@ -265,9 +265,9 @@ class ParentsReportController extends \mixtra\controllers\MITController
         |
         */
         $this->pre_index_html = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include HTML Code after index table
@@ -277,9 +277,9 @@ class ParentsReportController extends \mixtra\controllers\MITController
         |
         */
         $this->post_index_html = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include Javascript File
@@ -289,9 +289,9 @@ class ParentsReportController extends \mixtra\controllers\MITController
         |
         */
         $this->load_js = array();
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Add css style at body
@@ -301,9 +301,9 @@ class ParentsReportController extends \mixtra\controllers\MITController
         |
         */
         $this->style_css = null;
-        
-        
-        
+
+
+
         /*
         | ----------------------------------------------------------------------
         | Include css File
